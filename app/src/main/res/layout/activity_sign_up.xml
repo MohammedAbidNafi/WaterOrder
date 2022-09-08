@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/nunito_sans"
+        android:text="Enter your mobile number"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+
+
+
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/ccp"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ccp_back"
+        android:paddingHorizontal="6dp"
+        android:paddingTop="9dp"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_contentColor="@color/black"
+        app:ccp_showFlag="true"
+        app:ccp_showNameCode="false"
+        app:ccp_defaultPhoneCode="91"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.092" />
+
+    <EditText
+        android:id="@+id/phone_number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:background="@drawable/phone_back"
+        android:hint="9123456789"
+        android:inputType="phone"
+        android:padding="15sp"
+        android:textColorHint="@android:color/darker_gray"
+        app:boxStrokeWidthFocused="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ccp"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.092" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="18dp"
+        android:text="An OTP would be sent to the given number to verify \n \n\nCarrier charges may apply "
+        android:textAlignment="center"
+        android:fontFamily="@font/nunito_sans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/primary_btn"
+        android:elevation="20dp"
+        android:fontFamily="@font/nunito_sans"
+        android:text="Send OTP"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/otpSendAnim"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:lottie_rawRes="@raw/otp_send"
+        android:visibility="invisible"
+        app:lottie_speed="1.5"
+        android:layout_marginBottom="36dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.31" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LanguageActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.google.android.material.appbar.AppBarLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorOnPrimary"
+                    app:navigationIcon="@drawable/ic_baseline_menu_24"
+                    />
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="15dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:text="@string/select_language"
+        android:textColor="@color/black_text"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        />
+    <RadioGroup
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/lang_group"
+        android:background="@drawable/rectangle_border">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/english"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:button="@null"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+            android:background="?android:selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:textSize="27dp"
+            android:text="English"
+            android:onClick="onLanguageChange"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/tamil"
+            android:button="@null"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:layout_marginHorizontal="10dp"
+            android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+            android:background="?android:selectableItemBackground"
+            android:layout_marginVertical="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onLanguageChange"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:textSize="27dp"
+            android:text="தமிழ்"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/telugu"
+            android:button="@null"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:layout_marginHorizontal="10dp"
+            android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+            android:background="?android:selectableItemBackground"
+            android:layout_marginVertical="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:textSize="27dp"
+            android:onClick="onLanguageChange"
+            android:text="తెలుగు"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary"
+            />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/hindi"
+            android:button="@null"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:layout_marginHorizontal="10dp"
+            android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+            android:background="?android:selectableItemBackground"
+            android:layout_marginVertical="15dp"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:layout_width="match_parent"
+            android:textSize="27dp"
+            android:layout_height="wrap_content"
+            android:onClick="onLanguageChange"
+            android:text="हिंदी"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/malayalam"
+            android:button="@null"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:layout_marginHorizontal="10dp"
+            android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+            android:background="?android:selectableItemBackground"
+            android:layout_marginVertical="15dp"
+            android:layout_width="match_parent"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:textSize="27dp"
+            android:layout_height="wrap_content"
+            android:onClick="onLanguageChange"
+            android:text="മലയാളം"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/kannada"
+            android:button="@null"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:layout_marginHorizontal="10dp"
+            android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+            android:background="?android:selectableItemBackground"
+            android:layout_marginVertical="15dp"
+            android:layout_width="match_parent"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:textSize="27dp"
+            android:layout_height="wrap_content"
+            android:onClick="onLanguageChange"
+            android:text="ಕನ್ನಡ"/>
+
+
+    </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/primary_btn"
+            android:elevation="20dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/lang_group"
+            android:layout_marginTop="25dp"/>
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

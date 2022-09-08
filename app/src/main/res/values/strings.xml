@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">WaterOrder</string>
+
+
+    <string name="Attribute_1"><a href="https://www.flaticon.com/free-icons/male" title="male icons">Male icons created by Freepik - Flaticon</a></string>
+    <string name="Attribute_2"><a href="https://www.flaticon.com/free-icons/female" title="female icons">Female icons created by Freepik - Flaticon</a></string>
+    <string name="Attribute_3"><a href="https://www.flaticon.com/free-icons/water-bottle" title="water-bottle icons">Water-bottle icons created by Freepik - Flaticon</a></string>
+    <string name="Attribute_4"><a href="https://www.flaticon.com/free-icons/gallon" title="gallon icons">Gallon icons created by Freepik - Flaticon</a></string>
+
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
+    <string name="cart">Cart</string>
+    <string name="can">Can</string>
+    <string name="your_order">Your Order</string>
+    <string name="your_account">Your Account</string>
+    <string name="language">Language</string>
+    <string name="settings">Settings</string>
+    <string name="customer_care">Customer Care</string>
+    <string name="logout">Log Out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_language">Select Language</string>
+</resources>
