@@ -15,11 +15,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.margsapp.waterorder.Fragments.Can;
 import com.margsapp.waterorder.Fragments.Cart;
 import com.margsapp.waterorder.Fragments.Favourites;
@@ -37,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
 
     BottomNavigationView bottomNavigationView;
+
+    TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,30 @@ public class MainActivity extends AppCompatActivity {
 
 
         loadFragment(new Home());
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        View navigationViewHeaderView = navigationView.getHeaderView(0);
+
+        username = navigationViewHeaderView.findViewById(R.id.username);
+
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        rootRef.collection("Users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                     DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String Username = document.getString("username");
+
+                        username.setText(Username);
+
+
+                    }
+                }
+            }
+        });
+
 
 
 
@@ -89,9 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.cart:
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        fragment = new Cart();
-                        loadFragment(fragment);
-                        bottomNavigationView.setSelectedItemId(R.id.cart);
+                        startActivity(new Intent(MainActivity.this,CartActivity.class));
                         return true;
 
                         /*

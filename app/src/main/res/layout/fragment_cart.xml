@@ -3,12 +3,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Cart">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.Cart"
+    android:background="@color/different_back">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/cart" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/coupon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerView"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="20dp"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/coupon_img"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:padding="10dp"
+                    android:src="@drawable/coupon"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Have a Promo Code?"
+                    android:layout_toRightOf="@+id/coupon_img"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/black_text"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+
+                <ImageView
+                    android:id="@+id/next_img"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:rotationY="180"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/price_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="20dp"
+            android:layout_below="@+id/coupon">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price Summary"
+                    android:textSize="25dp"
+                    android:textColor="@color/black_text"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="20dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/grey"
+                    android:layout_below="@+id/title"/>
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        
+
+    </RelativeLayout>
+
 
 </FrameLayout>

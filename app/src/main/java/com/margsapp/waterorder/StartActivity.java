@@ -11,12 +11,29 @@ import android.widget.Button;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
 
     AppCompatButton SignUp,SignUpLater;
 
     private FirebaseAnalytics mFirebaseAnalytics;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser firebaseUser;
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (firebaseUser != null) {
+            Intent intent = new Intent(StartActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

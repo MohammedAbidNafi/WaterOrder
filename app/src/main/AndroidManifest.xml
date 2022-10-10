@@ -15,13 +15,35 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WaterOrder"
         tools:targetApi="31">
+        <activity
+            android:name=".CartActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WaterOrder.Main">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.WaterOrder.Authorization">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProductPageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.WaterOrder.Main" />
         <activity
             android:name=".LanguageActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.WaterOrder.Main"/>
+            android:theme="@style/Theme.WaterOrder.Main" />
         <activity
             android:name=".OTP_verify"
             android:exported="false"
@@ -41,13 +63,7 @@
             android:name=".StartActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.WaterOrder.Authorization">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.WaterOrder.Authorization"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"

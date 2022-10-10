@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -23,12 +22,6 @@ import android.widget.RadioButton;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.margsapp.iosdialog.iOSDialog;
-import com.margsapp.iosdialog.iOSDialogListener;
-import com.margsapp.waterorder.Fragments.Can;
-import com.margsapp.waterorder.Fragments.Cart;
-import com.margsapp.waterorder.Fragments.Favourites;
-import com.margsapp.waterorder.Fragments.Home;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -58,6 +51,99 @@ public class LanguageActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
 
         navigationView = findViewById(R.id.navigationView);
+        navigationView.setCheckedItem(R.id.language);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                Fragment fragment;
+                switch (item.getItemId()){
+
+
+                    case R.id.home:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(LanguageActivity.this,MainActivity.class));
+                        return true;
+
+                    /*
+
+                    case R.id.can:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        fragment = new Can();
+                        loadFragment(fragment);
+                        bottomNavigationView.setSelectedItemId(R.id.can);
+                        return true;
+
+                     */
+
+                    case R.id.cart:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(LanguageActivity.this,CartActivity.class));
+                        return true;
+
+                        /*
+                    case R.id.your_order:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainActivity.this, YourOrder.class));
+                        return true;
+                        */
+
+                    /*
+                    case R.id.favourites:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        fragment = new Favourites();
+                        loadFragment(fragment);
+                        bottomNavigationView.setSelectedItemId(R.id.favourites);
+                        return true;
+
+                     */
+
+
+                    /*
+                    case R.id.account:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainActivity.this, YourAccount.class));
+                        return true;
+
+
+                         */
+                    case R.id.language:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        navigationView.setCheckedItem(R.id.language);
+
+                        return true;
+                    /*
+                    case R.id.settings:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainActivity.this,Settings.class));
+
+                    case R.id.customercare:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainActivity.this,CustomerCare.class));
+                        return true;
+
+                     */
+
+
+
+
+
+                    case R.id.logout:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(LanguageActivity.this, StartActivity.class));
+                        return true;
+
+
+
+
+
+                }
+                return false;
+            }
+        });
 
         back = findViewById(R.id.back);
 
@@ -197,5 +283,14 @@ public class LanguageActivity extends AppCompatActivity {
         editor.apply();
 
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.setCheckedItem(R.id.language);
+    }
+
+
 
 }

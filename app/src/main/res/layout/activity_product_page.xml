@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductPageActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorOnPrimary"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+            />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        android:layout_above="@+id/bottom"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="300dp"
+
+                />
+
+            <com.varunest.sparkbutton.SparkButton
+                android:id="@+id/spark_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="-50dp"
+                app:sparkbutton_activeImage="@drawable/heart_on"
+                app:sparkbutton_inActiveImage="@drawable/heart_off"
+                app:sparkbutton_iconSize="35dp"
+
+                app:sparkbutton_primaryColor="@color/red"
+                app:sparkbutton_secondaryColor="@color/grey"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/product_image"/>
+
+            <TextView
+
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_image"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:text=""
+                android:textColor="@color/black_text"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Quantity_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_below="@+id/title"
+                android:textSize="35dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/lato"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Quantity_"
+                android:text=""
+                android:fontFamily="@font/nunito_sans"
+                android:textSize="16sp"
+                android:textColor="@color/black_text"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_below="@+id/description"
+                android:layout_marginLeft="15dp"/>
+
+
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:initialNumber="1"
+                app:finalNumber="5"
+                android:layout_marginLeft="15dp"
+                app:backGroundColor="@color/accent"
+                android:layout_below="@+id/price"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                app:textColor="@color/black_text"
+                app:textSize="8dp"/>
+
+        </RelativeLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:visibility="visible"
+        android:orientation="horizontal">
+
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_to_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Cart"
+            android:background="@drawable/primary_btn"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            android:layout_marginHorizontal="20dp"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:drawablePadding="0dp"
+            android:drawableTint="@color/white"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_2"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/remove_from_cart"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="X Remove from Cart"
+            android:backgroundTint="@color/red"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/outline_btn"
+            android:textColor="@color/red"
+            android:visibility="visible"
+            android:drawablePadding="0dp"
+            android:drawableTint="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Go_to_cart"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Go to Cart"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/primary_btn"
+            android:textColor="@color/white"
+            android:layout_marginEnd="20dp"
+            android:visibility="visible"
+            android:drawablePadding="0dp"
+            android:drawableTint="@color/white"
+            />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
