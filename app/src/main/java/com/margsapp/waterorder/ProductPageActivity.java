@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,15 +33,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.margsapp.waterorder.Adapter.FavAdapter;
 import com.margsapp.waterorder.Model.Cart;
+import com.margsapp.waterorder.Model.Price;
 import com.margsapp.waterorder.Model.Product;
 import com.varunest.sparkbutton.SparkButton;
-import com.varunest.sparkbutton.SparkButtonBuilder;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public class ProductPageActivity extends AppCompatActivity {
@@ -55,7 +51,11 @@ public class ProductPageActivity extends AppCompatActivity {
 
     AppCompatButton Add_to_Cart,Add_to_Favourites,Remove_from_Favourites,Remove_from_Cart,Go_to_Cart;
 
-    String PID,ImageURL;
+    String PID,ImageURL,No;
+
+    int Product_Price;
+
+    int TotalPrice;
 
     Intent intent;
 
@@ -63,8 +63,20 @@ public class ProductPageActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
 
+    Product product_;
+
+    boolean add_to_cart = false;
+
     private FirebaseFirestore firestore;
     SparkButton fav_btn;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        loadData();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +89,48 @@ public class ProductPageActivity extends AppCompatActivity {
 
         checkCart_AndFav();
 
-        loadData();
+
+
+        product_ = new Product();
+
+
+
+        quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+            @Override
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+
+                if(add_to_cart){
+                    if(newValue > oldValue){
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Cart").child(PID);
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("No",String.valueOf(newValue));
+                        databaseReference.updateChildren(hashMap);
+
+
+                        int FinalPrice = TotalPrice + product_.getPriceInt();
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(FinalPrice);
+
+
+
+                    }
+
+                    if(oldValue > newValue){
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Cart").child(PID);
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("No",String.valueOf(newValue));
+                        databaseReference.updateChildren(hashMap);
+
+                        int FinalPrice = TotalPrice - product_.getPriceInt();
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(FinalPrice);
+
+
+                    }
+                }
+
+            }
+        });
 
 
 
@@ -87,7 +140,16 @@ public class ProductPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AddToCart();
+                //getTotalPrice();
+
+
+                int quantity= Integer.parseInt(ProductPageActivity.this.quantity.getNumber());
+
+                int price = Product_Price * quantity;
+                int AddedPrice = TotalPrice + price;
+                Log.d("Quantity", Integer.toString(TotalPrice));
+
+                AddToCart(AddedPrice);
             }
         });
 
@@ -113,7 +175,7 @@ public class ProductPageActivity extends AppCompatActivity {
                             });
                 }else {
                     AddToFav();
-                    fav_btn.playAnimation();
+
                 }
 
             }
@@ -131,14 +193,35 @@ public class ProductPageActivity extends AppCompatActivity {
         Remove_from_Cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Cart").child(PID);
-                databaseReference.removeValue();
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Cart").child(PID);
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Cart cart = snapshot.getValue(Cart.class);
+                        assert cart != null;
+                        No = cart.getNo();
+                        Product_Price = cart.getPriceInt();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+                RemoveFromCart(TotalPrice);
+
+
+
+
+
             }
         });
 
     }
-
-
 
 
 
@@ -153,6 +236,73 @@ public class ProductPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+    }
+
+    private void loadData() {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products").child(PID);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Product product = snapshot.getValue(Product.class);
+
+
+
+                    title.setText(product.getTitle());
+                    description.setText(product.getDesc());
+                    Quantity.setText(product.getQuantity());
+                    price.setText(product.getPrice());
+                    description.setText(product.getDesc());
+                    ImageURL = product.getImage();
+                    Product_Price = product.getPriceInt();
+
+                    Glide.with(getApplication()).load(product.getImage()).into(product_image);
+
+
+
+
+                product_.setPID(product.getPID());
+                product_.setTitle(product.getTitle());
+                product_.setDesc(product.getDesc());
+                product_.setQuantity(product.getPID());
+                product_.setPrice(product.getPrice());
+                product_.setImage(product.getImage());
+                product_.setPriceInt(product.getPriceInt());
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("CartValue");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if(snapshot.exists()){
+                    Price price = snapshot.getValue(Price.class);
+
+                    assert price != null;
+                    if(snapshot.exists()){
+                        TotalPrice = price.getTotalPrice();
+                    }else {
+                        TotalPrice = 0;
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -187,42 +337,15 @@ public class ProductPageActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         fav_btn = findViewById(R.id.spark_button);
+
+
+
+
+
     }
 
 
-    private void loadData() {
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products").child(PID);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Product product = snapshot.getValue(Product.class);
-
-
-
-
-
-
-                    title.setText(product.getTitle());
-                    description.setText(product.getDesc());
-                    Quantity.setText(product.getQuantity());
-                    price.setText(product.getPrice());
-                    description.setText(product.getDesc());
-                    ImageURL = product.getImage();
-
-                    Glide.with(getApplication()).load(product.getImage()).into(product_image);
-
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
 
     private void checkCart_AndFav() {
 
@@ -238,9 +361,14 @@ public class ProductPageActivity extends AppCompatActivity {
                     bottom_2.setVisibility(View.VISIBLE);
                     bottom.setVisibility(View.GONE);
 
+                    Cart cart = snapshot.getValue(Cart.class);
+                    No = cart.getNo();
+                    add_to_cart = true;
+
                 }else {
                     bottom.setVisibility(View.VISIBLE);
                     bottom_2.setVisibility(View.GONE);
+                    add_to_cart = false;
                 }
             }
 
@@ -270,21 +398,55 @@ public class ProductPageActivity extends AppCompatActivity {
 
 
 
-    private void AddToCart() {
+
+
+    private void AddToCart(int AddedPrice) {
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference =FirebaseDatabase.getInstance().getReference();
 
-        HashMap<String, CharSequence> hashMap = new HashMap<String, CharSequence>();
+
+
+        HashMap hashMap = new HashMap();
         hashMap.put("PID",PID);
         hashMap.put("Image",ImageURL);
         hashMap.put("Title",title.getText());
         hashMap.put("Quantity",Quantity.getText());
         hashMap.put("Price",price.getText());
         hashMap.put("No",quantity.getNumber());
+        hashMap.put("PriceInt",Product_Price);
+
 
         assert firebaseUser != null;
         reference.child("Users").child(firebaseUser.getUid()).child("Cart").child(PID).setValue(hashMap);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(AddedPrice);
+
+
+    }
+
+
+    private void RemoveFromCart(int totalPrice) {
+
+
+
+
+        int Price_to_be_removed = Integer.parseInt(No) * Product_Price;
+
+        int FinalPrice = TotalPrice - Price_to_be_removed;
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+        databaseReference1.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(FinalPrice).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Cart").child(PID);
+                databaseReference2.removeValue();
+
+                loadData();
+            }
+        });
+
+
 
 
     }
@@ -297,14 +459,14 @@ public class ProductPageActivity extends AppCompatActivity {
 
         String No = "";
         // adding our data to our courses object class.
-        Cart cart = new Cart(No,PID,price.getText().toString(),Quantity.getText().toString(),title.getText().toString(),ImageURL);
+        Cart cart = new Cart(No,PID,price.getText().toString(),Quantity.getText().toString(),title.getText().toString(),ImageURL,Product_Price);
 
         // below method is use to add data to Firebase Firestore.
         reference.document(firebaseUser.getUid()).collection("Fav").document(PID).set(cart).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
 
-
+                fav_btn.playAnimation();
 
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -5,16 +5,27 @@ public class Cart {
 
     String No,PID,Price,Quantity,Title,Image;
 
-    public Cart(String no, String PID, String price, String quantity, String title, String image) {
+    int PriceInt;
+
+    public Cart(String no, String PID, String price, String quantity, String title, String image,int priceInt) {
         No = no;
         this.PID = PID;
         Price = price;
         Quantity = quantity;
         Title = title;
         Image = image;
+        PriceInt = priceInt;
     }
 
     public Cart() {
+    }
+
+    public int getPriceInt() {
+        return PriceInt;
+    }
+
+    public void setPriceInt(int priceInt) {
+        PriceInt = priceInt;
     }
 
     public String getImage() {

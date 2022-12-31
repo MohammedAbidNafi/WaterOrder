@@ -4,11 +4,13 @@ public class Product {
 
     String PID,Title,Quantity,Price,Image,Desc;
 
+    int PriceInt;
 
 
 
 
-    public Product(String pid, String title, String quantity, String price, String image,String desc) {
+
+    public Product(String pid, String title, String quantity, String price, String image,String desc,int priceint) {
 
         PID = pid;
         Title = title;
@@ -16,10 +18,21 @@ public class Product {
         Price = price;
         Image = image;
         Desc = desc;
+        PriceInt = priceint;
+
     }
 
     public Product() {
 
+    }
+
+
+    public int getPriceInt() {
+        return PriceInt;
+    }
+
+    public void setPriceInt(int priceInt) {
+        PriceInt = priceInt;
     }
 
     public String getDesc() {
