@@ -8,13 +8,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.margsapp.waterorder.Fragments.Cart;
 import com.margsapp.waterorder.Fragments.Home;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements PaymentResultListener {
 
     Toolbar toolbar;
+
+    Checkout checkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class CartActivity extends AppCompatActivity {
                finish();
             }
         });
+
 
         loadFragment(new Cart());
     }
@@ -47,5 +53,15 @@ public class CartActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        Toast.makeText(getApplicationContext(),"Payment success in Cart " + s,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Toast.makeText(getApplicationContext(),"Payment Failed in Cart " + s,Toast.LENGTH_SHORT).show();
     }
 }
