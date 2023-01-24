@@ -1,0 +1,773 @@
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    tools:context=\".Fragments.Home\"\r\n    android:background=\"@color/different_back\">\r\n\r\n    <androidx.core.widget.NestedScrollView\r\n        android:id=\"@+id/nestedScrollView\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:scrollbars=\"vertical\">\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n        <com.jama.carouselview.CarouselView\r\n            android:id=\"@+id/carouselView\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            android:layout_marginTop=\"20dp\"\r\n            app:spacing=\"10\" />\r\n\r\n        <!--\r\n            <org.imaginativeworld.whynotimagecarousel.ImageCarousel\r\n                android:id=\"@+id/imageCarousel\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"180dp\"\r\n                android:layout_gravity=\"center_horizontal\"\r\n                android:layout_marginTop=\"25sp\"\r\n                app:autoPlay=\"true\"\r\n                app:autoPlayDelay=\"8000\"\r\n                app:autoWidthFixing=\"true\"\r\n                app:carouselGravity=\"CENTER\"\r\n                app:carouselType=\"BLOCK\"\r\n                app:imageScaleType=\"fitCenter\"\r\n                app:infiniteCarousel=\"true\"\r\n                app:layout_constraintTop_toTopOf=\"parent\"\r\n                app:scaleOnScroll=\"true\"\r\n                app:scalingFactor=\".2\"\r\n                app:showBottomShadow=\"false\"\r\n                app:showCaption=\"false\"\r\n                app:showIndicator=\"false\"\r\n                app:showNavigationButtons=\"false\"\r\n                app:showTopShadow=\"false\" />\r\n\r\n\r\n            <me.relex.circleindicator.CircleIndicator2\r\n                android:id=\"@+id/indicator\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"32dp\"\r\n                app:ci_drawable=\"@drawable/indicator_dot_s\"\r\n                app:ci_drawable_unselected=\"@drawable/indicator_dot_us\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/imageCarousel\" />\r\n                   -->\r\n\r\n\r\n        <androidx.cardview.widget.CardView\r\n            android:id=\"@+id/W20L\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"170dp\"\r\n            android:layout_marginHorizontal=\"25dp\"\r\n            app:cardCornerRadius=\"20dp\"\r\n            app:cardElevation=\"5dp\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/carouselView\"\r\n            tools:layout_editor_absoluteX=\"25dp\">\r\n\r\n            <RelativeLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\">\r\n\r\n                <ImageView\r\n                    android:layout_width=\"180dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_alignParentStart=\"true\"\r\n                    android:layout_centerVertical=\"true\"\r\n\r\n                    android:src=\"@drawable/water_20\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/best_selling\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_alignParentRight=\"true\"\r\n                    android:layout_marginTop=\"8dp\"\r\n                    android:layout_marginEnd=\"35dp\"\r\n                    android:text=\"BEST SELLING\"\r\n                    android:textColor=\"@color/primary\"\r\n                    android:textSize=\"20dp\"\r\n                    android:textStyle=\"bold\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/product_title_1\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_below=\"@+id/best_selling\"\r\n                    android:layout_alignParentEnd=\"true\"\r\n                    android:layout_marginTop=\"5dp\"\r\n                    android:layout_marginEnd=\"35dp\"\r\n                    android:fontFamily=\"@font/nunito_sans\"\r\n                    android:text=\"20 L\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"20dp\"\r\n                    android:textStyle=\"bold\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/product_subtitle_1\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_below=\"@+id/product_title_1\"\r\n                    android:layout_alignParentEnd=\"true\"\r\n\r\n                    android:layout_marginEnd=\"35dp\"\r\n                    android:fontFamily=\"@font/nunito_sans\"\r\n                    android:text=\"Water Can\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"18dp\"\r\n                    android:textStyle=\"bold\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/price_1\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n\r\n                    android:layout_below=\"@+id/product_subtitle_1\"\r\n                    android:layout_alignParentEnd=\"true\"\r\n\r\n                    android:layout_marginEnd=\"35dp\"\r\n                    android:fontFamily=\"@font/nunito_sans\"\r\n                    android:text=\"₹80/-\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:textSize=\"20dp\"\r\n                    android:textStyle=\"bold\" />\r\n\r\n                <androidx.appcompat.widget.AppCompatButton\r\n                    android:layout_width=\"150dp\"\r\n                    android:layout_height=\"40dp\"\r\n                    android:layout_below=\"@+id/price_1\"\r\n                    android:layout_alignParentEnd=\"true\"\r\n                    android:layout_marginTop=\"5dp\"\r\n                    android:layout_marginEnd=\"10dp\"\r\n                    android:background=\"@drawable/primary_btn\"\r\n                    android:text=\"Add to Cart\"\r\n                    android:textColor=\"@color/white\" />\r\n\r\n            </RelativeLayout>\r\n        </androidx.cardview.widget.CardView>\r\n\r\n\r\n        <!--\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:orientation=\"vertical\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/W20L\"\r\n                >\r\n\r\n                <GridLayout\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:layout_marginHorizontal=\"25dp\"\r\n                    android:layout_marginVertical=\"10dp\"\r\n                    android:columnCount=\"2\"\r\n                    android:rowCount=\"5\"\r\n                    android:useDefaultMargins=\"true\">\r\n\r\n                    <androidx.cardview.widget.CardView\r\n                        android:id=\"@+id/W10L\"\r\n                        android:layout_width=\"165dp\"\r\n                        android:layout_height=\"255dp\"\r\n\r\n                        android:layout_marginTop=\"16dp\"\r\n                        app:cardBackgroundColor=\"@color/white\"\r\n\r\n                        app:cardCornerRadius=\"20dp\"\r\n                       >\r\n\r\n                        <RelativeLayout\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"match_parent\"\r\n                            android:background=\"@color/white\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/water_img_2\"\r\n                                android:layout_width=\"180dp\"\r\n                                android:layout_height=\"160dp\"\r\n                                android:layout_alignParentTop=\"true\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:src=\"@drawable/water_10\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_title_2\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/water_img_2\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"10 L\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_subtitle_2\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_title_2\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"Water Can\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/price_2\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_subtitle_2\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"₹45/-\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n\r\n\r\n                        </RelativeLayout>\r\n                    </androidx.cardview.widget.CardView>\r\n\r\n                    <androidx.cardview.widget.CardView\r\n                        android:id=\"@+id/W5L\"\r\n                        android:layout_width=\"165dp\"\r\n                        android:layout_height=\"255dp\"\r\n\r\n                        android:layout_marginTop=\"16dp\"\r\n                        app:cardCornerRadius=\"20dp\">\r\n\r\n                        <RelativeLayout\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"match_parent\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/water_img_3\"\r\n                                android:layout_width=\"180dp\"\r\n                                android:layout_height=\"160dp\"\r\n                                android:layout_alignParentTop=\"true\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:src=\"@drawable/water_5\" />\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_title_3\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/water_img_3\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"5 L\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_subtitle_3\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_title_3\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"Water Can\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/price_3\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_subtitle_3\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"₹25\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                        </RelativeLayout>\r\n                    </androidx.cardview.widget.CardView>\r\n\r\n                    <androidx.cardview.widget.CardView\r\n                        android:id=\"@+id/W2L\"\r\n                        android:layout_width=\"165dp\"\r\n                        android:layout_height=\"255dp\"\r\n\r\n                        android:layout_marginTop=\"16dp\"\r\n                        app:cardCornerRadius=\"20dp\">\r\n\r\n                        <RelativeLayout\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"match_parent\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/water_img_4\"\r\n                                android:layout_width=\"180dp\"\r\n                                android:layout_height=\"160dp\"\r\n                                android:layout_alignParentTop=\"true\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:src=\"@drawable/water_2\" />\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_title_4\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/water_img_4\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"2 L\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_subtitle_4\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_title_4\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"Pack of 9\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/price_4\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_subtitle_4\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"₹270\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                        </RelativeLayout>\r\n                    </androidx.cardview.widget.CardView>\r\n\r\n                    <androidx.cardview.widget.CardView\r\n                        android:id=\"@+id/W1L\"\r\n                        android:layout_width=\"165dp\"\r\n                        android:layout_height=\"255dp\"\r\n\r\n                        android:layout_marginTop=\"16dp\"\r\n                        app:cardCornerRadius=\"20dp\">\r\n\r\n                        <RelativeLayout\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"match_parent\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/water_img_5\"\r\n                                android:layout_width=\"180dp\"\r\n                                android:layout_height=\"160dp\"\r\n                                android:layout_alignParentTop=\"true\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:src=\"@drawable/water_1\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_title_5\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/water_img_5\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"1 L\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_subtitle_5\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_title_5\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"Pack of 12\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/price_5\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_subtitle_5\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"₹240\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                        </RelativeLayout>\r\n                    </androidx.cardview.widget.CardView>\r\n\r\n                    <androidx.cardview.widget.CardView\r\n                        android:id=\"@+id/W.5L\"\r\n                        android:layout_width=\"165dp\"\r\n                        android:layout_height=\"255dp\"\r\n\r\n                        android:layout_marginTop=\"16dp\"\r\n                        app:cardCornerRadius=\"20dp\">\r\n\r\n                        <RelativeLayout\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"match_parent\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/water_img_6\"\r\n                                android:layout_width=\"180dp\"\r\n                                android:layout_height=\"160dp\"\r\n                                android:layout_alignParentTop=\"true\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:src=\"@drawable/water_0_5\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_title_6\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/water_img_6\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"500ML\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_subtitle_6\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_title_6\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"Pack of 24\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/price_6\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_subtitle_6\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"₹280\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                        </RelativeLayout>\r\n                    </androidx.cardview.widget.CardView>\r\n\r\n                    <androidx.cardview.widget.CardView\r\n                        android:id=\"@+id/W.3L\"\r\n                        android:layout_width=\"165dp\"\r\n                        android:layout_height=\"255dp\"\r\n\r\n                        android:layout_marginTop=\"16dp\"\r\n                        app:cardCornerRadius=\"20dp\">\r\n\r\n                        <RelativeLayout\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"match_parent\">\r\n\r\n                            <ImageView\r\n                                android:id=\"@+id/water_img_7\"\r\n                                android:layout_width=\"180dp\"\r\n                                android:layout_height=\"160dp\"\r\n                                android:layout_alignParentTop=\"true\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:src=\"@drawable/water_0_3\" />\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_title_7\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/water_img_7\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n                                android:layout_marginTop=\"5dp\"\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"300ML\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/product_subtitle_7\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_title_7\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"Pack of 24\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n\r\n                            <TextView\r\n                                android:id=\"@+id/price_7\"\r\n                                android:layout_width=\"wrap_content\"\r\n                                android:layout_height=\"wrap_content\"\r\n                                android:layout_below=\"@+id/product_subtitle_7\"\r\n                                android:layout_centerHorizontal=\"true\"\r\n\r\n                                android:fontFamily=\"@font/nunito_sans\"\r\n                                android:text=\"₹180\"\r\n                                android:textAlignment=\"center\"\r\n                                android:textColor=\"@color/black\"\r\n                                android:textSize=\"18dp\"\r\n                                android:textStyle=\"bold\" />\r\n\r\n                        </RelativeLayout>\r\n                    </androidx.cardview.widget.CardView>\r\n\r\n                </GridLayout>\r\n\r\n\r\n            </LinearLayout>\r\n            -->\r\n\r\n        <androidx.recyclerview.widget.RecyclerView\r\n            android:id=\"@+id/recyclerView\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginHorizontal=\"25dp\"\r\n            android:layout_marginTop=\"10dp\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/W20L\" />\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n\r\n\r\n    </androidx.core.widget.NestedScrollView>\r\n\r\n\r\n\r\n\r\n\r\n\r\n</FrameLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	(revision 34a32fbffa69bdc5867d2d08b6d18e1d647c756e)
++++ b/app/src/main/res/layout/fragment_home.xml	(date 1674545604836)
+@@ -62,9 +62,9 @@
+ 
+ 
+         <androidx.cardview.widget.CardView
+-            android:id="@+id/W20L"
++            android:id="@+id/BestSellingCard"
+             android:layout_width="match_parent"
+-            android:layout_height="170dp"
++            android:layout_height="160dp"
+             android:layout_marginHorizontal="25dp"
+             app:cardCornerRadius="20dp"
+             app:cardElevation="5dp"
+@@ -76,12 +76,13 @@
+                 android:layout_height="match_parent">
+ 
+                 <ImageView
++                    android:id="@+id/bs_img"
+                     android:layout_width="180dp"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentStart="true"
+                     android:layout_centerVertical="true"
+ 
+-                    android:src="@drawable/water_20" />
++                    />
+ 
+                 <TextView
+                     android:id="@+id/best_selling"
+@@ -96,496 +97,55 @@
+                     android:textStyle="bold" />
+ 
+                 <TextView
+-                    android:id="@+id/product_title_1"
++                    android:id="@+id/bs_title"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/best_selling"
+                     android:layout_alignParentEnd="true"
+-                    android:layout_marginTop="5dp"
++                    android:layout_marginTop="10dp"
+                     android:layout_marginEnd="35dp"
+                     android:fontFamily="@font/nunito_sans"
+-                    android:text="20 L"
++                    android:text="Water Can"
+                     android:textColor="@color/black"
+-                    android:textSize="20dp"
++                    android:textSize="25dp"
+                     android:textStyle="bold" />
+ 
+                 <TextView
+-                    android:id="@+id/product_subtitle_1"
++                    android:id="@+id/bs_subtitle"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+-                    android:layout_below="@+id/product_title_1"
++                    android:layout_below="@+id/bs_title"
+                     android:layout_alignParentEnd="true"
+-
++                    android:text="20L"
+                     android:layout_marginEnd="35dp"
+                     android:fontFamily="@font/nunito_sans"
+-                    android:text="Water Can"
++                    android:layout_marginTop="5dp"
+                     android:textColor="@color/black"
+-                    android:textSize="18dp"
++                    android:textSize="20dp"
+                     android:textStyle="bold" />
+ 
+                 <TextView
+-                    android:id="@+id/price_1"
++                    android:id="@+id/bs_price"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+ 
+-                    android:layout_below="@+id/product_subtitle_1"
++                    android:layout_below="@+id/bs_subtitle"
+                     android:layout_alignParentEnd="true"
+ 
+                     android:layout_marginEnd="35dp"
+-                    android:fontFamily="@font/nunito_sans"
+-                    android:text="₹80/-"
+-                    android:textColor="@color/black"
+-                    android:textSize="20dp"
+-                    android:textStyle="bold" />
+-
+-                <androidx.appcompat.widget.AppCompatButton
+-                    android:layout_width="150dp"
+-                    android:layout_height="40dp"
+-                    android:layout_below="@+id/price_1"
+-                    android:layout_alignParentEnd="true"
+                     android:layout_marginTop="5dp"
+-                    android:layout_marginEnd="10dp"
+-                    android:background="@drawable/primary_btn"
+-                    android:text="Add to Cart"
+-                    android:textColor="@color/white" />
+-
+-            </RelativeLayout>
+-        </androidx.cardview.widget.CardView>
+-
+-
+-        <!--
+-            <LinearLayout
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:orientation="vertical"
+-                app:layout_constraintTop_toBottomOf="@id/W20L"
+-                >
+-
+-                <GridLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="match_parent"
+-                    android:layout_marginHorizontal="25dp"
+-                    android:layout_marginVertical="10dp"
+-                    android:columnCount="2"
+-                    android:rowCount="5"
+-                    android:useDefaultMargins="true">
+-
+-                    <androidx.cardview.widget.CardView
+-                        android:id="@+id/W10L"
+-                        android:layout_width="165dp"
+-                        android:layout_height="255dp"
+-
+-                        android:layout_marginTop="16dp"
+-                        app:cardBackgroundColor="@color/white"
+-
+-                        app:cardCornerRadius="20dp"
+-                       >
+-
+-                        <RelativeLayout
+-                            android:layout_width="match_parent"
+-                            android:layout_height="match_parent"
+-                            android:background="@color/white">
+-
+-                            <ImageView
+-                                android:id="@+id/water_img_2"
+-                                android:layout_width="180dp"
+-                                android:layout_height="160dp"
+-                                android:layout_alignParentTop="true"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:src="@drawable/water_10" />
+-
+-                            <TextView
+-                                android:id="@+id/product_title_2"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/water_img_2"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="10 L"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
++                    android:fontFamily="@font/nunito_sans"
++                    android:text="₹80"
++                    android:textColor="@color/black"
++                    android:textSize="25dp"
++                    android:textStyle="bold" />
+ 
+-                            <TextView
+-                                android:id="@+id/product_subtitle_2"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_title_2"
+-                                android:layout_centerHorizontal="true"
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="Water Can"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                            <TextView
+-                                android:id="@+id/price_2"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_subtitle_2"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="₹45/-"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+ 
+ 
+-                        </RelativeLayout>
+-                    </androidx.cardview.widget.CardView>
++            </RelativeLayout>
++        </androidx.cardview.widget.CardView>
+ 
+-                    <androidx.cardview.widget.CardView
+-                        android:id="@+id/W5L"
+-                        android:layout_width="165dp"
+-                        android:layout_height="255dp"
+-
+-                        android:layout_marginTop="16dp"
+-                        app:cardCornerRadius="20dp">
+-
+-                        <RelativeLayout
+-                            android:layout_width="match_parent"
+-                            android:layout_height="match_parent">
+-
+-                            <ImageView
+-                                android:id="@+id/water_img_3"
+-                                android:layout_width="180dp"
+-                                android:layout_height="160dp"
+-                                android:layout_alignParentTop="true"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:src="@drawable/water_5" />
+-
+-
+-                            <TextView
+-                                android:id="@+id/product_title_3"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/water_img_3"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="5 L"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                            <TextView
+-                                android:id="@+id/product_subtitle_3"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_title_3"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="Water Can"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-
+-                            <TextView
+-                                android:id="@+id/price_3"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_subtitle_3"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="₹25"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                        </RelativeLayout>
+-                    </androidx.cardview.widget.CardView>
+-
+-                    <androidx.cardview.widget.CardView
+-                        android:id="@+id/W2L"
+-                        android:layout_width="165dp"
+-                        android:layout_height="255dp"
+-
+-                        android:layout_marginTop="16dp"
+-                        app:cardCornerRadius="20dp">
+-
+-                        <RelativeLayout
+-                            android:layout_width="match_parent"
+-                            android:layout_height="match_parent">
+-
+-                            <ImageView
+-                                android:id="@+id/water_img_4"
+-                                android:layout_width="180dp"
+-                                android:layout_height="160dp"
+-                                android:layout_alignParentTop="true"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:src="@drawable/water_2" />
+-
+-
+-                            <TextView
+-                                android:id="@+id/product_title_4"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/water_img_4"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="2 L"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                            <TextView
+-                                android:id="@+id/product_subtitle_4"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_title_4"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="Pack of 9"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-
+-                            <TextView
+-                                android:id="@+id/price_4"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_subtitle_4"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="₹270"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                        </RelativeLayout>
+-                    </androidx.cardview.widget.CardView>
+-
+-                    <androidx.cardview.widget.CardView
+-                        android:id="@+id/W1L"
+-                        android:layout_width="165dp"
+-                        android:layout_height="255dp"
+-
+-                        android:layout_marginTop="16dp"
+-                        app:cardCornerRadius="20dp">
+-
+-                        <RelativeLayout
+-                            android:layout_width="match_parent"
+-                            android:layout_height="match_parent">
+-
+-                            <ImageView
+-                                android:id="@+id/water_img_5"
+-                                android:layout_width="180dp"
+-                                android:layout_height="160dp"
+-                                android:layout_alignParentTop="true"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:src="@drawable/water_1" />
+-
+-                            <TextView
+-                                android:id="@+id/product_title_5"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/water_img_5"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="1 L"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                            <TextView
+-                                android:id="@+id/product_subtitle_5"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_title_5"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="Pack of 12"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-
+-                            <TextView
+-                                android:id="@+id/price_5"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_subtitle_5"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="₹240"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                        </RelativeLayout>
+-                    </androidx.cardview.widget.CardView>
+-
+-                    <androidx.cardview.widget.CardView
+-                        android:id="@+id/W.5L"
+-                        android:layout_width="165dp"
+-                        android:layout_height="255dp"
+-
+-                        android:layout_marginTop="16dp"
+-                        app:cardCornerRadius="20dp">
+-
+-                        <RelativeLayout
+-                            android:layout_width="match_parent"
+-                            android:layout_height="match_parent">
+-
+-                            <ImageView
+-                                android:id="@+id/water_img_6"
+-                                android:layout_width="180dp"
+-                                android:layout_height="160dp"
+-                                android:layout_alignParentTop="true"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:src="@drawable/water_0_5" />
+-
+-                            <TextView
+-                                android:id="@+id/product_title_6"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/water_img_6"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="500ML"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                            <TextView
+-                                android:id="@+id/product_subtitle_6"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_title_6"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="Pack of 24"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-
+-
+-
+-                            <TextView
+-                                android:id="@+id/price_6"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_subtitle_6"
+-                                android:layout_centerHorizontal="true"
+ 
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="₹280"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                        </RelativeLayout>
+-                    </androidx.cardview.widget.CardView>
+-
+-                    <androidx.cardview.widget.CardView
+-                        android:id="@+id/W.3L"
+-                        android:layout_width="165dp"
+-                        android:layout_height="255dp"
+-
+-                        android:layout_marginTop="16dp"
+-                        app:cardCornerRadius="20dp">
+-
+-                        <RelativeLayout
+-                            android:layout_width="match_parent"
+-                            android:layout_height="match_parent">
+-
+-                            <ImageView
+-                                android:id="@+id/water_img_7"
+-                                android:layout_width="180dp"
+-                                android:layout_height="160dp"
+-                                android:layout_alignParentTop="true"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:src="@drawable/water_0_3" />
+-
+-
+-                            <TextView
+-                                android:id="@+id/product_title_7"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/water_img_7"
+-                                android:layout_centerHorizontal="true"
+-                                android:layout_marginTop="5dp"
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="300ML"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                            <TextView
+-                                android:id="@+id/product_subtitle_7"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_title_7"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="Pack of 24"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-
+-                            <TextView
+-                                android:id="@+id/price_7"
+-                                android:layout_width="wrap_content"
+-                                android:layout_height="wrap_content"
+-                                android:layout_below="@+id/product_subtitle_7"
+-                                android:layout_centerHorizontal="true"
+-
+-                                android:fontFamily="@font/nunito_sans"
+-                                android:text="₹180"
+-                                android:textAlignment="center"
+-                                android:textColor="@color/black"
+-                                android:textSize="18dp"
+-                                android:textStyle="bold" />
+-
+-                        </RelativeLayout>
+-                    </androidx.cardview.widget.CardView>
+-
+-                </GridLayout>
+-
+-
+-            </LinearLayout>
+-            -->
+ 
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/recyclerView"
+@@ -595,7 +155,7 @@
+             android:layout_marginTop="10dp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@+id/W20L" />
++            app:layout_constraintTop_toBottomOf="@+id/BestSellingCard" />
+     </androidx.constraintlayout.widget.ConstraintLayout>
+ 
+ 
+Index: app/src/main/java/com/margsapp/waterorder/Fragments/Home.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.margsapp.waterorder.Fragments;\r\n\r\nimport android.annotation.SuppressLint;\r\nimport android.app.ProgressDialog;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.compose.runtime.snapshots.Snapshot;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.GridLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.ProgressBar;\r\nimport android.widget.TextView;\r\n\r\nimport com.andrognito.flashbar.Flashbar;\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.Query;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.google.firebase.firestore.CollectionReference;\r\nimport com.google.firebase.firestore.DocumentChange;\r\nimport com.google.firebase.firestore.DocumentSnapshot;\r\nimport com.google.firebase.firestore.EventListener;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\nimport com.google.firebase.firestore.FirebaseFirestoreException;\r\nimport com.google.firebase.firestore.QuerySnapshot;\r\nimport com.jama.carouselview.CarouselView;\r\nimport com.jama.carouselview.CarouselViewListener;\r\nimport com.jama.carouselview.enums.IndicatorAnimationType;\r\nimport com.jama.carouselview.enums.OffsetType;\r\nimport com.margsapp.waterorder.Adapter.ProductAdapter;\r\nimport com.margsapp.waterorder.Model.Product;\r\nimport com.margsapp.waterorder.R;\r\n\r\n\r\nimport org.w3c.dom.Text;\r\n\r\n\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Objects;\r\n\r\nimport me.relex.circleindicator.CircleIndicator;\r\nimport me.relex.circleindicator.CircleIndicator2;\r\n\r\n\r\npublic class Home extends Fragment {\r\n\r\n\r\n    //ImageCarousel imageCarousel;\r\n\r\n    //CircleIndicator2 indicator;\r\n\r\n\r\n    TextView Product_Title_1,Product_Title_2,Product_Title_3,Product_Title_4,Product_Title_5,Product_Title_6,Product_Title_7,Product_Title_8,Product_Title_9;\r\n\r\n    TextView Product_SubTitle1,Product_SubTitle2,Product_SubTitle3,Product_SubTitle4,Product_SubTitle5,Product_SubTitle6,Product_SubTitle7,Product_SubTitle8,Product_SubTitle9;\r\n\r\n    TextView Price_1,Price_2,Price_3,Price_4,Price_5,Price_6,Price_7,Price_8,Price_9;\r\n\r\n\r\n    private int[] images = {R.drawable.img_1,\r\n            R.drawable.img_2, R.drawable.img_3};\r\n\r\n    RecyclerView recyclerView;\r\n    ArrayList<Product> productList;\r\n    ProductAdapter productAdapter;\r\n\r\n\r\n    ProgressDialog progressDialog;\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        View view = inflater.inflate(R.layout.fragment_home, container, false);\r\n\r\n\r\n        progressDialog = new ProgressDialog(getActivity());\r\n        progressDialog.setCancelable(false);\r\n        progressDialog.setMessage(\"Getting the latest products\");\r\n        progressDialog.show();\r\n\r\n\r\n        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);\r\n        recyclerView = view.findViewById(R.id.recyclerView);\r\n        recyclerView.setHasFixedSize(true);\r\n        recyclerView.setLayoutManager(layoutManager);\r\n\r\n\r\n        productList = new ArrayList<>();\r\n\r\n\r\n        CarouselView carouselView = view.findViewById(R.id.carouselView);\r\n\r\n        carouselView.setSize(images.length);\r\n        carouselView.setResource(R.layout.center_carousel_item);\r\n        carouselView.setAutoPlay(true);\r\n        carouselView.setAutoPlayDelay(8000);\r\n        carouselView.enableSnapping(true);\r\n        carouselView.setIndicatorSelectedColor(getActivity().getResources().getColor(R.color.primary));\r\n        carouselView.setIndicatorUnselectedColor(getActivity().getResources().getColor(R.color.secondary));\r\n        carouselView.setScaleOnScroll(true);\r\n        carouselView.setIndicatorAnimationType(IndicatorAnimationType.WORM);\r\n        carouselView.setCarouselOffset(OffsetType.CENTER);\r\n        carouselView.setCarouselViewListener(new CarouselViewListener() {\r\n            @SuppressLint(\"UseCompatLoadingForDrawables\")\r\n            @Override\r\n            public void onBindView(View view, int position) {\r\n                // Example here is setting up a full image carousel\r\n                ImageView imageView = view.findViewById(R.id.imageView);\r\n                imageView.setImageDrawable(getResources().getDrawable(images[position]));\r\n            }\r\n        });\r\n        // After you finish setting up, show the CarouselView\r\n        carouselView.show();\r\n\r\n\r\n        Product_Title_1 = view.findViewById(R.id.product_title_1);\r\n\r\n        Product_SubTitle1 = view.findViewById(R.id.product_subtitle_1);\r\n\r\n        Price_1 = view.findViewById(R.id.price_1);\r\n\r\n        loadData();\r\n\r\n\r\n\r\n\r\n        return view;\r\n    }\r\n\r\n    private void loadData() {\r\n\r\n\r\n        productList.clear();\r\n\r\n\r\n        Query query = FirebaseDatabase.getInstance().getReference(\"Products\").orderByChild(\"Order\");\r\n        query.addListenerForSingleValueEvent(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n\r\n                for (DataSnapshot snapshot1 : snapshot.getChildren()) {\r\n                    Product product = snapshot1.getValue(Product.class);\r\n\r\n                    productList.add(product);\r\n\r\n                }\r\n\r\n                productAdapter = new ProductAdapter(getContext(), productList);\r\n                recyclerView.setAdapter(productAdapter);\r\n                progressDialog.dismiss();\r\n\r\n\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n\r\n\r\n            }\r\n        });\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/margsapp/waterorder/Fragments/Home.java b/app/src/main/java/com/margsapp/waterorder/Fragments/Home.java
+--- a/app/src/main/java/com/margsapp/waterorder/Fragments/Home.java	(revision 34a32fbffa69bdc5867d2d08b6d18e1d647c756e)
++++ b/app/src/main/java/com/margsapp/waterorder/Fragments/Home.java	(date 1674545439528)
+@@ -6,6 +6,7 @@
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
++import androidx.appcompat.widget.AppCompatButton;
+ import androidx.compose.runtime.snapshots.Snapshot;
+ import androidx.fragment.app.Fragment;
+ import androidx.recyclerview.widget.GridLayoutManager;
+@@ -20,8 +21,11 @@
+ import android.widget.TextView;
+ 
+ import com.andrognito.flashbar.Flashbar;
++import com.bumptech.glide.Glide;
+ import com.google.android.gms.tasks.OnCompleteListener;
+ import com.google.android.gms.tasks.Task;
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.auth.FirebaseUser;
+ import com.google.firebase.database.DataSnapshot;
+ import com.google.firebase.database.DatabaseError;
+ import com.google.firebase.database.DatabaseReference;
+@@ -49,6 +53,7 @@
+ 
+ 
+ import java.util.ArrayList;
++import java.util.HashMap;
+ import java.util.List;
+ import java.util.Objects;
+ 
+@@ -64,11 +69,19 @@
+     //CircleIndicator2 indicator;
+ 
+ 
+-    TextView Product_Title_1,Product_Title_2,Product_Title_3,Product_Title_4,Product_Title_5,Product_Title_6,Product_Title_7,Product_Title_8,Product_Title_9;
++    TextView BS_Title;
++
++    TextView BS_SubTitle;
++
++    TextView BS_Price;
++
++    ImageView BS_Image;
++    int Product_Price;
+ 
+-    TextView Product_SubTitle1,Product_SubTitle2,Product_SubTitle3,Product_SubTitle4,Product_SubTitle5,Product_SubTitle6,Product_SubTitle7,Product_SubTitle8,Product_SubTitle9;
++    String BSID;
++    String BS_img_url;
+ 
+-    TextView Price_1,Price_2,Price_3,Price_4,Price_5,Price_6,Price_7,Price_8,Price_9;
++
+ 
+ 
+     private int[] images = {R.drawable.img_1,
+@@ -128,13 +141,39 @@
+         carouselView.show();
+ 
+ 
+-        Product_Title_1 = view.findViewById(R.id.product_title_1);
++        BS_Title = view.findViewById(R.id.bs_title);
++
++        BS_SubTitle = view.findViewById(R.id.bs_subtitle);
++
++        BS_Price = view.findViewById(R.id.bs_price);
++
++        BS_Image = view.findViewById(R.id.bs_img);
+ 
+-        Product_SubTitle1 = view.findViewById(R.id.product_subtitle_1);
+ 
+-        Price_1 = view.findViewById(R.id.price_1);
++        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
++        rootRef.collection("Products").document("BS").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
++            @Override
++            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
++                if (task.isSuccessful()) {
++                    DocumentSnapshot document = task.getResult();
++                    if (document.exists()) {
+ 
+-        loadData();
++                        BSID = document.getString("PID");
++
++                        if(BSID != null){
++                            loadData();
++                        }
++
++
++                    }
++                }
++            }
++        });
++
++
++
++
++
+ 
+ 
+ 
+@@ -156,7 +195,10 @@
+                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                     Product product = snapshot1.getValue(Product.class);
+ 
+-                    productList.add(product);
++                    if(!Objects.equals(product.getTitle(), "BS")){
++                        productList.add(product);
++                    }
++
+ 
+                 }
+ 
+@@ -174,5 +216,38 @@
+             }
+         });
+ 
++        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products").child(BSID);
++        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
++            @Override
++            public void onDataChange(@NonNull DataSnapshot snapshot) {
++
++
++                    Product product = snapshot.getValue(Product.class);
++
++                    assert product != null;
++                    BS_Title.setText(product.getTitle());
++                    BS_SubTitle.setText(product.getQuantity());
++                    BS_Price.setText(product.getPrice());
++                    Glide.with(requireContext()).load(product.getImage()).into(BS_Image);
++
++                    BS_img_url = product.getImage();
++                    Product_Price = product.getPriceInt();
++
++
++
++
++            }
++
++            @Override
++            public void onCancelled(@NonNull DatabaseError error) {
++
++
++            }
++        });
++
++
++
++
++
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/margsapp/waterorder/CartActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.margsapp.waterorder;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.appcompat.widget.Toolbar;\r\nimport androidx.core.view.GravityCompat;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\n\r\nimport com.margsapp.waterorder.Fragments.Cart;\r\nimport com.margsapp.waterorder.Fragments.Home;\r\n\r\npublic class CartActivity extends AppCompatActivity {\r\n\r\n    Toolbar toolbar;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_cart);\r\n\r\n        toolbar = findViewById(R.id.toolbar);\r\n\r\n        toolbar.setNavigationOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n               finish();\r\n            }\r\n        });\r\n\r\n        loadFragment(new Cart());\r\n    }\r\n\r\n\r\n    public void loadFragment(Fragment fragment){\r\n        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();\r\n        transaction.replace(R.id.frame_container, fragment);\r\n        transaction.addToBackStack(null);\r\n        transaction.commit();\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onBackPressed() {\r\n        super.onBackPressed();\r\n        finish();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/margsapp/waterorder/CartActivity.java b/app/src/main/java/com/margsapp/waterorder/CartActivity.java
+--- a/app/src/main/java/com/margsapp/waterorder/CartActivity.java	(revision 34a32fbffa69bdc5867d2d08b6d18e1d647c756e)
++++ b/app/src/main/java/com/margsapp/waterorder/CartActivity.java	(date 1674586902237)
+@@ -8,14 +8,19 @@
+ 
+ import android.os.Bundle;
+ import android.view.View;
++import android.widget.Toast;
+ 
+ import com.margsapp.waterorder.Fragments.Cart;
+ import com.margsapp.waterorder.Fragments.Home;
++import com.razorpay.Checkout;
++import com.razorpay.PaymentResultListener;
+ 
+-public class CartActivity extends AppCompatActivity {
++public class CartActivity extends AppCompatActivity implements PaymentResultListener {
+ 
+     Toolbar toolbar;
+ 
++    Checkout checkout;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -30,6 +35,7 @@
+             }
+         });
+ 
++
+         loadFragment(new Cart());
+     }
+ 
+@@ -48,4 +54,14 @@
+         super.onBackPressed();
+         finish();
+     }
++
++    @Override
++    public void onPaymentSuccess(String s) {
++        Toast.makeText(getApplicationContext(),"Payment success in Cart " + s,Toast.LENGTH_SHORT).show();
++    }
++
++    @Override
++    public void onPaymentError(int i, String s) {
++        Toast.makeText(getApplicationContext(),"Payment Failed in Cart " + s,Toast.LENGTH_SHORT).show();
++    }
+ }
+\ No newline at end of file
