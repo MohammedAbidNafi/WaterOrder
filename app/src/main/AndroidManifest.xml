@@ -17,13 +17,6 @@
         android:supportsRtl="true"
         tools:targetApi="31">
         <activity
-            android:name=".PaymentSuccessActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".CartActivity"
             android:exported="false"
             android:theme="@style/Theme.WaterOrder.Main">
@@ -70,19 +63,13 @@
             android:name=".StartActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.WaterOrder.Authorization" />
+            android:theme="@style/Theme.WaterOrder.Authorization"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.WaterOrder.Main" />
-        <activity
-            android:name="com.razorpay.CheckoutActivity"
-            android:exported="true" />
 
-        <meta-data
-            android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_H2r4ZREd5wGlhu" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

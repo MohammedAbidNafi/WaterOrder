@@ -9,14 +9,14 @@ public class Users {
 
     private String Username, Gender,Address_STR;
 
-    //private java.util.Date DOB;
+    private java.util.Date DOB;
 
     private Geocoder location;
 
-    public Users(String gender,String username,String address_STR) {
+    public Users(String gender,String username, java.util.Date DOB,String address_STR) {
         Gender = gender;
         Username = username;
-        //this.DOB = DOB;
+        this.DOB = DOB;
         Address_STR = address_STR;
 
     }
@@ -45,7 +45,6 @@ public class Users {
         Address_STR = address_STR;
     }
 
-    /*
     public java.util.Date getDOB() {
         return DOB;
     }
@@ -53,8 +52,6 @@ public class Users {
     public void setDOB(Date DOB) {
         this.DOB = DOB;
     }
-
-     */
 
     public Geocoder getLocation() {
         return location;

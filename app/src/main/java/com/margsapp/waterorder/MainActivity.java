@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,11 +31,10 @@ import com.margsapp.waterorder.Fragments.Can;
 import com.margsapp.waterorder.Fragments.Cart;
 import com.margsapp.waterorder.Fragments.Favourites;
 import com.margsapp.waterorder.Fragments.Home;
-import com.razorpay.PaymentResultListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MainActivity extends AppCompatActivity implements PaymentResultListener {
+public class MainActivity extends AppCompatActivity {
 
 
     Toolbar toolbar;
@@ -249,19 +247,5 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         homeIntent.addCategory( Intent.CATEGORY_HOME );
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
-    }
-
-    @Override
-    public void onPaymentSuccess(String s) {
-        Toast.makeText(getApplicationContext(),"Payment success in Main " + s,Toast.LENGTH_SHORT).show();
-
-        startActivity(new Intent(MainActivity.this,PaymentSuccessActivity.class));
-    }
-
-    @Override
-    public void onPaymentError(int i, String s) {
-
-        Toast.makeText(getApplicationContext(),"Payment Failed in Main " + s,Toast.LENGTH_SHORT).show();
-
     }
 }

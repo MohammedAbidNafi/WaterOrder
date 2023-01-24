@@ -3,7 +3,6 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-
         jcenter()
 
     }
@@ -13,9 +12,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url "https://artifactory.paytm.in/libs-release-local"
-        }
         maven { url "https://jitpack.io" }
         jcenter()
     }

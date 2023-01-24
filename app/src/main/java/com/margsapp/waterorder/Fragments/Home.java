@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.compose.runtime.snapshots.Snapshot;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,8 +21,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.andrognito.flashbar.Flashbar;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +53,7 @@ import org.w3c.dom.Text;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -64,11 +69,19 @@ public class Home extends Fragment {
     //CircleIndicator2 indicator;
 
 
-    TextView Product_Title_1,Product_Title_2,Product_Title_3,Product_Title_4,Product_Title_5,Product_Title_6,Product_Title_7,Product_Title_8,Product_Title_9;
+    TextView BS_Title;
 
-    TextView Product_SubTitle1,Product_SubTitle2,Product_SubTitle3,Product_SubTitle4,Product_SubTitle5,Product_SubTitle6,Product_SubTitle7,Product_SubTitle8,Product_SubTitle9;
+    TextView BS_SubTitle;
 
-    TextView Price_1,Price_2,Price_3,Price_4,Price_5,Price_6,Price_7,Price_8,Price_9;
+    TextView BS_Price;
+
+    ImageView BS_Image;
+    int Product_Price;
+
+    String BSID;
+    String BS_img_url;
+
+
 
 
     private int[] images = {R.drawable.img_1,
@@ -128,13 +141,39 @@ public class Home extends Fragment {
         carouselView.show();
 
 
-        Product_Title_1 = view.findViewById(R.id.product_title_1);
+        BS_Title = view.findViewById(R.id.bs_title);
 
-        Product_SubTitle1 = view.findViewById(R.id.product_subtitle_1);
+        BS_SubTitle = view.findViewById(R.id.bs_subtitle);
 
-        Price_1 = view.findViewById(R.id.price_1);
+        BS_Price = view.findViewById(R.id.bs_price);
 
-        loadData();
+        BS_Image = view.findViewById(R.id.bs_img);
+
+
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        rootRef.collection("Products").document("BS").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+
+                        BSID = document.getString("PID");
+
+                        if(BSID != null){
+                            loadData();
+                        }
+
+
+                    }
+                }
+            }
+        });
+
+
+
+
+
 
 
 
@@ -156,7 +195,10 @@ public class Home extends Fragment {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     Product product = snapshot1.getValue(Product.class);
 
-                    productList.add(product);
+                    if(!Objects.equals(product.getTitle(), "BS")){
+                        productList.add(product);
+                    }
+
 
                 }
 
@@ -173,6 +215,39 @@ public class Home extends Fragment {
 
             }
         });
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products").child(BSID);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                    Product product = snapshot.getValue(Product.class);
+
+                    assert product != null;
+                    BS_Title.setText(product.getTitle());
+                    BS_SubTitle.setText(product.getQuantity());
+                    BS_Price.setText(product.getPrice());
+                    Glide.with(requireContext()).load(product.getImage()).into(BS_Image);
+
+                    BS_img_url = product.getImage();
+                    Product_Price = product.getPriceInt();
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+            }
+        });
+
+
+
+
 
     }
 }

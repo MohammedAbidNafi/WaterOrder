@@ -1,15 +1,12 @@
 package com.margsapp.waterorder.Fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +25,8 @@ import com.margsapp.waterorder.Adapter.ProductAdapter;
 import com.margsapp.waterorder.Model.Price;
 import com.margsapp.waterorder.Model.Product;
 import com.margsapp.waterorder.R;
-import com.razorpay.Checkout;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Cart extends Fragment {
 
@@ -44,10 +37,6 @@ public class Cart extends Fragment {
     FirebaseUser firebaseUser;
 
     TextView total_price;
-
-    Checkout checkout;
-
-    AppCompatButton checkout_btn;
 
 
 
@@ -63,29 +52,12 @@ public class Cart extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager= new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        checkout_btn = view.findViewById(R.id.checkout);
-
-
-
-
-        Checkout.preload(getContext());
-
-        checkout = new Checkout();
-
-        checkout.setKeyID("rzp_test_H2r4ZREd5wGlhu");
 
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Cartlist = new ArrayList<>();
         loadData();
-
-        checkout_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startPayement();
-            }
-        });
 
 
         return view;
@@ -151,61 +123,5 @@ public class Cart extends Fragment {
 
 
 
-    }
-
-
-    public void startPayement(){
-        Checkout checkout = new Checkout();
-
-        String ID = Randomizer(6);
-
-        checkout.setImage(R.mipmap.ic_launcher_round);
-        final Activity activity = getActivity();
-
-
-        try {
-
-
-            JSONObject options = new JSONObject();
-
-            options.put("name", "Water Order");
-            options.put("description","Order water");
-            options.put("theme.color", "#276583");
-            options.put("currency","INR");
-            options.put("amount",total_price.getText().toString()+"00");
-
-            checkout.open(activity,options);
-        }catch (Exception e){
-            Log.e("Error with Razorpay","Error starting Razorpay", e);
-        }
-    }
-
-
-    private String Randomizer(int n) {
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890" + "abcdefghijklmnopqrstuvxyz";
-
-        // create random string builder
-        StringBuilder sb = new StringBuilder();
-
-        // create an object of Random class
-        Random random = new Random();
-
-        // specify length of random string
-
-        for(int i = 0; i < n; i++) {
-
-            // generate random index number
-            int index = random.nextInt(AlphaNumericString.length());
-
-            // get character specified by index
-            // from the string
-            char randomChar = AlphaNumericString.charAt(index);
-
-            // append the character to string builder
-            sb.append(randomChar);
-        }
-
-
-        return sb.toString();
     }
 }
