@@ -60,16 +60,24 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.WaterOrder.Authorization" />
         <activity
+            android:name=".PaymentSuccessActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.WaterOrder.Authorization" />
+        <activity
             android:name=".StartActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.WaterOrder.Authorization"></activity>
+            android:theme="@style/Theme.WaterOrder.Authorization" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.WaterOrder.Main" />
 
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_H2r4ZREd5wGlhu" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

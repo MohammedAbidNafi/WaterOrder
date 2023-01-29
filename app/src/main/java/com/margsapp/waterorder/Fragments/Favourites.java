@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class Favourites extends Fragment implements FavAdapter.EventListener{
 
     RecyclerView recyclerView;
+    LinearLayout empty;
 
     FirebaseUser firebaseUser;
 
@@ -48,6 +50,7 @@ public class Favourites extends Fragment implements FavAdapter.EventListener{
 
 
         recyclerView = view.findViewById(R.id.recyclerView);
+        empty = view.findViewById(R.id.empty);
         LinearLayoutManager layoutManager= new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
@@ -72,25 +75,36 @@ public class Favourites extends Fragment implements FavAdapter.EventListener{
 
     private void loadData() {
 
-        FavList.clear();
+
 
         firestore.collection("Users").document(firebaseUser.getUid()).collection("Fav").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-
+                FavList.clear();
                 for(DocumentChange documentChange : value.getDocumentChanges()){
                     if(documentChange.getType() == DocumentChange.Type.ADDED){
                         FavList.add(documentChange.getDocument().toObject(Cart.class));
                     }
 
 
+
                     favAdapter.notifyDataSetChanged();
 
 
                 }
+                if (FavList.isEmpty()) {
+                    recyclerView.setVisibility(View.GONE);
+                    empty.setVisibility(View.VISIBLE);
+                }else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    empty.setVisibility(View.GONE);
+                }
             }
         });
+
+
+
 
 
 

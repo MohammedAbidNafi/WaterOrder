@@ -2,11 +2,13 @@ package com.margsapp.waterorder.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.compose.runtime.snapshots.Snapshot;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -45,6 +47,7 @@ import com.jama.carouselview.enums.IndicatorAnimationType;
 import com.jama.carouselview.enums.OffsetType;
 import com.margsapp.waterorder.Adapter.ProductAdapter;
 import com.margsapp.waterorder.Model.Product;
+import com.margsapp.waterorder.ProductPageActivity;
 import com.margsapp.waterorder.R;
 
 
@@ -80,6 +83,8 @@ public class Home extends Fragment {
 
     String BSID;
     String BS_img_url;
+
+    CardView BS_Card;
 
 
 
@@ -149,6 +154,8 @@ public class Home extends Fragment {
 
         BS_Image = view.findViewById(R.id.bs_img);
 
+        BS_Card = view.findViewById(R.id.BestSellingCard);
+
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         rootRef.collection("Products").document("BS").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -167,6 +174,16 @@ public class Home extends Fragment {
 
                     }
                 }
+            }
+        });
+
+
+        BS_Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProductPageActivity.class);
+                intent.putExtra("PID",BSID);
+                startActivity(intent);
             }
         });
 

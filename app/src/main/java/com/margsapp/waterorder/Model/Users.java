@@ -7,16 +7,16 @@ import java.util.Date;
 
 public class Users {
 
-    private String Username, Gender,Address_STR;
+    private String Username, Gender,PhoneNumber,Address_STR;
 
-    private java.util.Date DOB;
+
 
     private Geocoder location;
 
-    public Users(String gender,String username, java.util.Date DOB,String address_STR) {
+    public Users(String gender,String username, String phoneNumber,String address_STR) {
         Gender = gender;
         Username = username;
-        this.DOB = DOB;
+        PhoneNumber = phoneNumber;
         Address_STR = address_STR;
 
     }
@@ -45,12 +45,12 @@ public class Users {
         Address_STR = address_STR;
     }
 
-    public java.util.Date getDOB() {
-        return DOB;
+    public String getPhoneNumber() {
+        return PhoneNumber;
     }
 
-    public void setDOB(Date DOB) {
-        this.DOB = DOB;
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
     }
 
     public Geocoder getLocation() {

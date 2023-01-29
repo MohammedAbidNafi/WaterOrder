@@ -29,6 +29,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.ResultReceiver;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -76,6 +77,7 @@ public class Personal_InfoActivity extends AppCompatActivity {
 
     TextView username,dob,address;
 
+
     final Calendar myCalendar= Calendar.getInstance();
 
     private ResultReceiver resultReceiver;
@@ -86,11 +88,14 @@ public class Personal_InfoActivity extends AppCompatActivity {
 
     private RadioGroup gender;
 
-    String username_,gender_,Address_;
-    Date dob_;
+    String username_ = null,gender_ = null,Address_ = null;
+    //Date dob_;
     Geocoder latitude,longitude;
 
     FirebaseUser firebaseUser;
+
+
+    String phoneNo;
 
 
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
@@ -107,10 +112,18 @@ public class Personal_InfoActivity extends AppCompatActivity {
 
         save = findViewById(R.id.save);
 
+
+
+        phoneNo = getIntent().getStringExtra("phoneNo");
+
         username_box = findViewById(R.id.name_card);
         username = findViewById(R.id.username);
+
+        /*
         dob_box = findViewById(R.id.dob_card);
         dob = findViewById(R.id.dob);
+
+         */
         username_dialog = new Dialog(Personal_InfoActivity.this);
         address_box = findViewById(R.id.address_card);
         address = findViewById(R.id.address);
@@ -128,8 +141,6 @@ public class Personal_InfoActivity extends AppCompatActivity {
                 RadioButton radioButton = (RadioButton) radioGroup.findViewById(i);
                 gender_ = radioButton.getText().toString();
 
-                Toast.makeText(getApplicationContext(),"You selected " + radioButton.getText(),Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -141,6 +152,8 @@ public class Personal_InfoActivity extends AppCompatActivity {
                 onOptions();
             }
         });
+
+        /*
 
         DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -160,6 +173,8 @@ public class Personal_InfoActivity extends AppCompatActivity {
                 new DatePickerDialog(Personal_InfoActivity.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
+         */
 
 
 
@@ -192,15 +207,13 @@ public class Personal_InfoActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT)
                             .show();
 
-                }if(username.length() == 0){
+                }if(TextUtils.isEmpty(username_)){
                     Toast.makeText(getApplicationContext(),"Please enter username",Toast.LENGTH_SHORT).show();
-                }else if(dob.length() == 0){
-                    Toast.makeText(getApplicationContext(),"Please enter Date of Birh",Toast.LENGTH_SHORT).show();
-                }else if(address.length() == 0){
+                }if(TextUtils.isEmpty(Address_)){
                     Toast.makeText(getApplicationContext(),"Please enter Address",Toast.LENGTH_SHORT).show();
-                } else {
+                } if(selectedId != -1 && !TextUtils.isEmpty(username_)  && !TextUtils.isEmpty(Address_)) {
                     
-                    addDataToFirestore(gender_,username_,dob_,Address_);
+                    addDataToFirestore(gender_,username_,phoneNo,Address_);
 
                 }
 
@@ -340,22 +353,16 @@ public class Personal_InfoActivity extends AppCompatActivity {
     }
 
 
-    private void updateLabel(){
-        String myFormat="dd/MM/yy";
-        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.UK);
-        dob_ = myCalendar.getTime();
-        dob.setText(dateFormat.format(myCalendar.getTime()));
-    }
 
 
-    private void addDataToFirestore( String gender_,String username_, Date dob_, String Address_) {
+    private void addDataToFirestore( String gender_,String username_, String PhoneNumber, String Address_) {
 
         // creating a collection reference
         // for our Firebase Firetore database.
         CollectionReference dbUsers = firestore.collection("Users");
 
         // adding our data to our courses object class.
-        Users user = new Users(gender_, username_, dob_, Address_);
+        Users user = new Users(gender_, username_, PhoneNumber, Address_);
 
         // below method is use to add data to Firebase Firestore.
         dbUsers.document(firebaseUser.getUid()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

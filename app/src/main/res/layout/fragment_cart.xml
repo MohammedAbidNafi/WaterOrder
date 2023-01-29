@@ -36,6 +36,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/coupon"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recyclerView"
@@ -83,6 +84,16 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
+
+
+
+            <include
+                android:id="@+id/empty"
+                layout="@layout/empty"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"/>
 
 
 
@@ -139,6 +150,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/checkout"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

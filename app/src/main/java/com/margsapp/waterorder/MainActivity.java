@@ -13,10 +13,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,10 +33,11 @@ import com.margsapp.waterorder.Fragments.Can;
 import com.margsapp.waterorder.Fragments.Cart;
 import com.margsapp.waterorder.Fragments.Favourites;
 import com.margsapp.waterorder.Fragments.Home;
+import com.razorpay.PaymentResultListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PaymentResultListener {
 
 
     Toolbar toolbar;
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     TextView username;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -227,6 +230,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
     public void loadFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
@@ -247,5 +252,22 @@ public class MainActivity extends AppCompatActivity {
         homeIntent.addCategory( Intent.CATEGORY_HOME );
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
+    }
+
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        try {
+            startActivity(new Intent(MainActivity.this,PaymentSuccessActivity.class));
+            Toast.makeText(getApplicationContext(),"Payment success in Cart " + s,Toast.LENGTH_SHORT).show();
+
+        }catch (Exception e){
+            Log.e("Error with Razorpay", "Something went wrong", e);
+        }
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+
     }
 }

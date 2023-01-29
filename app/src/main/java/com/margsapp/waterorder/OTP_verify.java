@@ -199,7 +199,9 @@ public class OTP_verify extends AppCompatActivity {
                         assert firebaseUser != null;
                         String userid = firebaseUser.getUid();
 
-                        startActivity(new Intent(OTP_verify.this, Personal_InfoActivity.class));
+                        Intent intent = new Intent(OTP_verify.this,Personal_InfoActivity.class);
+                        intent.putExtra("phoneNo", phoneNo);
+                        startActivity(intent);
 
                     } else {
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {

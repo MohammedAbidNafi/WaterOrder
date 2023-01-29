@@ -6,10 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".PaymentSuccessActivity">
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_above="@+id/order_placed_txt"
+        app:lottie_rawRes="@raw/success"
+        app:lottie_autoPlay="true"
+        />
+
     <TextView
+        android:id="@+id/order_placed_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        android:textStyle="bold"
+        android:textSize="45dp"
+        android:textColor="@color/black"
         android:layout_centerInParent="true"
-        android:text="Order Placed"/>
+        android:text="Payment Success"/>
+
+    <TextView
+        android:id="@+id/order_desc_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/order_placed_txt"
+        android:textAlignment="center"
+        android:text="You're order #484932 has been placed successfully"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/order_desc_txt"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:paddingHorizontal="70dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/outline_btn"
+        android:textColor="@color/primary"
+        android:layout_marginEnd="20dp"
+        android:visibility="visible"
+        android:drawablePadding="0dp"
+
+        />
+
 
 </RelativeLayout>

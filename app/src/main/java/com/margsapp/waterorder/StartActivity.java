@@ -47,7 +47,7 @@ public class StartActivity extends AppCompatActivity {
 
 
         SignUp = findViewById(R.id.signup);
-        SignUpLater = findViewById(R.id.SignUpLater);
+        //SignUpLater = findViewById(R.id.SignUpLater);
 
 
 
@@ -58,11 +58,14 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        /*
         SignUpLater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(StartActivity.this, MainActivity.class));
             }
         });
+
+         */
     }
 }

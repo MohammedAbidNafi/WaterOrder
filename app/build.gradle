@@ -5,14 +5,7 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('E:\\Android Studio\\WaterOrder\\KEY.jks')
-            storePassword 'Abid_2004'
-            keyAlias 'key'
-            keyPassword 'Abid_2004'
-        }
-    }
+
     compileSdk 33
 
     defaultConfig {
@@ -28,7 +21,7 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -82,6 +75,7 @@ dependencies {
     implementation 'com.github.MohammedAbidNafi:iOS-Style-Alert-Dialog:-SNAPSHOT'
 
 
+    implementation 'com.razorpay:checkout:1.6.26'
 
     // Circle Indicator (To fix the xml preview "Missing classes" error)
     implementation 'me.relex:circleindicator:2.1.6'
