@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Cart"
-    android:background="@color/different_back">
+    android:background="@color/card_back">
 
 
     <RelativeLayout
@@ -26,17 +26,31 @@
             >
 
 
+            <TextView
+                android:id="@+id/title_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
+                android:text="My Cart"
+                android:layout_centerHorizontal="true"
+                android:textSize="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black_text"/>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
+                    android:layout_below="@+id/title_"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:visibility="gone"
                     />
 
+
+            <!--
                 <androidx.cardview.widget.CardView
                     android:id="@+id/coupon"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recyclerView"
@@ -83,6 +97,7 @@
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+                -->
 
 
 
@@ -91,9 +106,12 @@
                 android:id="@+id/empty"
                 layout="@layout/empty"
                 android:visibility="gone"
+                android:layout_below="@+id/title_"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="30dp"/>
+
+
 
 
 
@@ -109,7 +127,7 @@
             android:id="@+id/price_summary"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-
+            android:visibility="gone"
 
 
             android:layout_alignParentBottom="true"

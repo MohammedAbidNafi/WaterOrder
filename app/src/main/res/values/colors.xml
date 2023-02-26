@@ -17,5 +17,8 @@
     <color name="grey">#495050</color>
 
 
+    <color name="Trans_red">#6FFF9F9F</color>
+
+
     <color name="different_back">#EDEDED</color>
 </resources>

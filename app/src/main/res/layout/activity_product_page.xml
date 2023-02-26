@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".ProductPageActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
+        app:elevation="0dp"
         android:layout_height="?attr/actionBarSize"
         style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
         android:fitsSystemWindows="true">
@@ -19,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorOnPrimary"
+            android:elevation="0dp"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
             />
 
@@ -41,20 +44,21 @@
             <ImageView
                 android:id="@+id/product_image"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:background="@drawable/product_back"
                 android:layout_height="300dp"
 
                 />
 
             <com.varunest.sparkbutton.SparkButton
                 android:id="@+id/spark_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="-50dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
                 app:sparkbutton_activeImage="@drawable/heart_on"
                 app:sparkbutton_inActiveImage="@drawable/heart_off"
-                app:sparkbutton_iconSize="35dp"
-
+                app:sparkbutton_iconSize="25dp"
+                android:background="@drawable/fav_back"
                 app:sparkbutton_primaryColor="@color/red"
                 app:sparkbutton_secondaryColor="@color/grey"
                 android:layout_alignParentEnd="true"
@@ -67,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_image"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/lato"
                 android:text=""
                 android:textColor="@color/black_text"
@@ -94,7 +98,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/black_text"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 />
 
             <TextView
@@ -103,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/lato"
                 android:textSize="40dp"
                 android:textStyle="bold"

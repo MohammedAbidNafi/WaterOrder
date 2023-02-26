@@ -15,9 +15,11 @@ import android.widget.Toast;
 import com.margsapp.waterorder.Fragments.Cart;
 import com.margsapp.waterorder.Fragments.Home;
 import com.razorpay.Checkout;
+import com.razorpay.PaymentData;
 import com.razorpay.PaymentResultListener;
+import com.razorpay.PaymentResultWithDataListener;
 
-public class CartActivity extends AppCompatActivity implements PaymentResultListener {
+public class CartActivity extends AppCompatActivity implements PaymentResultWithDataListener {
 
     Toolbar toolbar;
 
@@ -58,19 +60,30 @@ public class CartActivity extends AppCompatActivity implements PaymentResultList
     }
 
     @Override
-    public void onPaymentSuccess(String s) {
-        try {
-            startActivity(new Intent(CartActivity.this,PaymentSuccessActivity.class));
-            Toast.makeText(getApplicationContext(),"Payment success in Cart " + s,Toast.LENGTH_SHORT).show();
+    public void onPaymentSuccess(String s, PaymentData paymentData) {
+
+
+
+        try{
+            Intent intent = new Intent(CartActivity.this,PaymentSuccessActivity.class);
+            intent.putExtra("orderID",paymentData.getOrderId());
+            intent.putExtra("paymentID",paymentData.getPaymentId());
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Payment success in Cart " + s, Toast.LENGTH_SHORT).show();
 
         }catch (Exception e){
-            Log.e("Error with Razorpay", "Something went wrong", e);
+            Toast.makeText(getApplicationContext(),"Something went wrong please try again later" + e,Toast.LENGTH_SHORT).show();
+
+            Log.e("Razorpay Error", e.getMessage());
         }
+
+
+
 
     }
 
     @Override
-    public void onPaymentError(int i, String s) {
-        Toast.makeText(getApplicationContext(),"Payment Failed in Cart " + s,Toast.LENGTH_SHORT).show();
+    public void onPaymentError(int i, String s, PaymentData paymentData) {
+
     }
 }

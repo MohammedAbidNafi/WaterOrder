@@ -44,6 +44,7 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class Cart extends Fragment  {
@@ -79,7 +80,7 @@ public class Cart extends Fragment  {
 
 
         total_price = view.findViewById(R.id.total_price);
-        coupon = view.findViewById(R.id.coupon);
+        //coupon = view.findViewById(R.id.coupon);
         empty = view.findViewById(R.id.empty);
         price_summary = view.findViewById(R.id.price_summary);
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -91,15 +92,13 @@ public class Cart extends Fragment  {
 
         Cartlist = new ArrayList<>();
 
+
         checkout_btn = view.findViewById(R.id.checkout);
 
-        Checkout.preload(getContext());
-
-        checkout = new Checkout();
-
-        checkout.setKeyID("rzp_test_H2r4ZREd5wGlhu");
         loadData();
 
+
+        loadPayement();
 
 
         checkout_btn.setOnClickListener(new View.OnClickListener() {
@@ -135,14 +134,14 @@ public class Cart extends Fragment  {
                 recyclerView.setAdapter(cartAdapter);
                 if(Cartlist.isEmpty()){
                     recyclerView.setVisibility(View.GONE);
-                    coupon.setVisibility(View.GONE);
+                    //coupon.setVisibility(View.GONE);
                     price_summary.setVisibility(View.GONE);
                     empty.setVisibility(View.VISIBLE);
 
                 }
                 if(!Cartlist.isEmpty()) {
                     recyclerView.setVisibility(View.VISIBLE);
-                    coupon.setVisibility(View.VISIBLE);
+                    //coupon.setVisibility(View.VISIBLE);
                     price_summary.setVisibility(View.VISIBLE);
                     empty.setVisibility(View.GONE);
                 }
@@ -208,11 +207,23 @@ public class Cart extends Fragment  {
 
     }
 
+    private void loadPayement(){
+
+
+
+        Checkout.preload(requireContext());
+
+        checkout = new Checkout();
+
+        checkout.setKeyID("rzp_test_H2r4ZREd5wGlhu");
+
+
+    }
+
 
     public void startPayement(){
         Checkout checkout = new Checkout();
 
-        String ID = Randomizer(6);
 
         checkout.setImage(R.mipmap.ic_launcher_round);
         final Activity activity = getActivity();
@@ -228,6 +239,7 @@ public class Cart extends Fragment  {
             options.put("theme.color", "#276583");
             options.put("currency","INR");
             //options.put("prefill.contact",PhoneNumber);
+            options.put("send_sms_hash",true);
             options.put("prefill.name", Username);
             options.put("amount",total_price.getText().toString()+"00");
 
@@ -238,33 +250,7 @@ public class Cart extends Fragment  {
     }
 
 
-    private String Randomizer(int n) {
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890" + "abcdefghijklmnopqrstuvxyz";
 
-        // create random string builder
-        StringBuilder sb = new StringBuilder();
-
-        // create an object of Random class
-        Random random = new Random();
-
-        // specify length of random string
-
-        for(int i = 0; i < n; i++) {
-
-            // generate random index number
-            int index = random.nextInt(AlphaNumericString.length());
-
-            // get character specified by index
-            // from the string
-            char randomChar = AlphaNumericString.charAt(index);
-
-            // append the character to string builder
-            sb.append(randomChar);
-        }
-
-
-        return sb.toString();
-    }
 
 
 }

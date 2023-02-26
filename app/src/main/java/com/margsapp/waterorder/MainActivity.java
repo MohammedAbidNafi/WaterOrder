@@ -21,23 +21,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.margsapp.waterorder.Fragments.Can;
 import com.margsapp.waterorder.Fragments.Cart;
 import com.margsapp.waterorder.Fragments.Favourites;
 import com.margsapp.waterorder.Fragments.Home;
+import com.margsapp.waterorder.Model.Order;
+import com.razorpay.PaymentData;
 import com.razorpay.PaymentResultListener;
+import com.razorpay.PaymentResultWithDataListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MainActivity extends AppCompatActivity implements PaymentResultListener {
+public class MainActivity extends AppCompatActivity implements PaymentResultWithDataListener {
 
 
     Toolbar toolbar;
@@ -50,8 +56,12 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
 
     TextView username;
 
+    FirebaseFirestore firestore;
+
+    FirebaseUser firebaseUser;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -62,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         navigationView = findViewById(R.id.navigationView);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -85,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                     DocumentSnapshot document = task.getResult();
+                    DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         String Username = document.getString("username");
 
@@ -98,15 +110,13 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         });
 
 
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 Fragment fragment;
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
 
 
                     case R.id.home:
@@ -125,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
 
                     case R.id.cart:
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        startActivity(new Intent(MainActivity.this,CartActivity.class));
+                        startActivity(new Intent(MainActivity.this, CartActivity.class));
                         return true;
 
                         /*
@@ -153,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
                          */
                     case R.id.language:
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        startActivity(new Intent(MainActivity.this,LanguageActivity.class));
+                        startActivity(new Intent(MainActivity.this, LanguageActivity.class));
                         return true;
                     /*
                     case R.id.settings:
@@ -168,17 +178,11 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
                      */
 
 
-
-
-
                     case R.id.logout:
                         drawerLayout.closeDrawer(GravityCompat.START);
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(MainActivity.this, StartActivity.class));
                         return true;
-
-
-
 
 
                 }
@@ -192,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 Fragment fragment;
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
 
                     case R.id.home:
                         fragment = new Home();
@@ -226,13 +230,10 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         });
 
 
-
     }
 
 
-
-
-    public void loadFragment(Fragment fragment){
+    public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
@@ -247,27 +248,44 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
     }
 
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
     }
 
 
     @Override
-    public void onPaymentSuccess(String s) {
-        try {
-            startActivity(new Intent(MainActivity.this,PaymentSuccessActivity.class));
-            Toast.makeText(getApplicationContext(),"Payment success in Cart " + s,Toast.LENGTH_SHORT).show();
+    public void onPaymentSuccess(String s, PaymentData paymentData) {
+
+
+
+        try{
+            Intent intent = new Intent(MainActivity.this,PaymentSuccessActivity.class);
+            intent.putExtra("orderID",paymentData.getOrderId());
+            intent.putExtra("paymentID",paymentData.getPaymentId());
+            intent.putExtra("s",s);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Payment success in Cart " + s, Toast.LENGTH_SHORT).show();
 
         }catch (Exception e){
-            Log.e("Error with Razorpay", "Something went wrong", e);
+            Toast.makeText(getApplicationContext(),"Something went wrong please try again later",Toast.LENGTH_SHORT).show();
+
+            Log.e("Razorpay Error", e.getMessage());
         }
+
+
+
+
+    }
+
+    public void Main(View view){
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
     @Override
-    public void onPaymentError(int i, String s) {
+    public void onPaymentError(int i, String s, PaymentData paymentData) {
 
     }
 }
