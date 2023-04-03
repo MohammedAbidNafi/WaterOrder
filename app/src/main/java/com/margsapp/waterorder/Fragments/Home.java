@@ -212,6 +212,7 @@ public class Home extends Fragment {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     Product product = snapshot1.getValue(Product.class);
 
+                    assert product != null;
                     if(!Objects.equals(product.getTitle(), "BS")){
                         productList.add(product);
                     }
@@ -244,11 +245,11 @@ public class Home extends Fragment {
                     assert product != null;
                     BS_Title.setText(product.getTitle());
                     BS_SubTitle.setText(product.getQuantity());
-                    BS_Price.setText(product.getPrice());
+                    BS_Price.setText(String.format("%s%s", getActivity().getText(R.string.rupee), String.valueOf(product.getPrice())));
                     Glide.with(requireContext()).load(product.getImage()).into(BS_Image);
 
                     BS_img_url = product.getImage();
-                    Product_Price = product.getPriceInt();
+                    Product_Price = product.getPrice();
 
 
 

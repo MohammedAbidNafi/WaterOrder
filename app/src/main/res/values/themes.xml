@@ -18,7 +18,7 @@
     <style name="Theme.WaterOrder.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/secondary</item>
+        <item name="colorPrimaryVariant">@color/accent</item>
         <item name="colorOnPrimary">@color/accent</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>

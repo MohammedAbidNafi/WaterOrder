@@ -15,7 +15,8 @@
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:id="@+id/bar_layout">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
@@ -28,6 +29,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="?attr/colorOnPrimary"
+                    app:titleCentered="true"
+                    app:titleTextColor="@color/primary"
                     app:navigationIcon="@drawable/ic_baseline_menu_24"
                     />
 
@@ -37,13 +40,46 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/citySelector"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/bar_layout">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/selectedCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selected city: Chennai"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_text"
+                    android:layout_marginStart="15dp"/>
+
+                <TextView
+                    android:id="@+id/citySelectorTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change city"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:textColor="@color/blue"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
 
         <FrameLayout
             android:id="@+id/frame_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/citySelector"
             android:layout_above="@+id/bottom_navigation"
-            android:layout_marginTop="50dp" />
+            />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

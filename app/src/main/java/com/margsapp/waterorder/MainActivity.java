@@ -29,6 +29,8 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
     BottomNavigationView bottomNavigationView;
 
-    TextView username;
+    TextView username,cityChange,selectedCity;
 
     FirebaseFirestore firestore;
 
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
         setContentView(R.layout.activity_main);
 
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Explore");
 
         drawerLayout = findViewById(R.id.drawerlayout);
 
@@ -75,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        cityChange = findViewById(R.id.citySelectorTxt);
+        selectedCity = findViewById(R.id.selectedCity);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,24 +97,16 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
         username = navigationViewHeaderView.findViewById(R.id.username);
 
-        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
-        rootRef.collection("Users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+
+
+
+        cityChange.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        String Username = document.getString("username");
-
-                        username.setText(Username);
-
-
-                    }
-                }
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CitySelector.class));
             }
         });
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @SuppressLint("NonConstantResourceId")
@@ -122,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
                     case R.id.home:
                         drawerLayout.closeDrawer(GravityCompat.START);
                         fragment = new Home();
+                        toolbar.setTitle("Explore");
                         loadFragment(fragment);
                         bottomNavigationView.setSelectedItemId(R.id.home);
                         return true;
@@ -135,20 +133,22 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
                     case R.id.cart:
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        toolbar.setTitle("My Cart");
                         startActivity(new Intent(MainActivity.this, CartActivity.class));
                         return true;
 
-                        /*
+
                     case R.id.your_order:
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        startActivity(new Intent(MainActivity.this, YourOrder.class));
+                        startActivity(new Intent(MainActivity.this, MyOrderActivity.class));
                         return true;
-                        */
+
 
                     case R.id.favourites:
                         drawerLayout.closeDrawer(GravityCompat.START);
                         fragment = new Favourites();
                         loadFragment(fragment);
+                        toolbar.setTitle("My Favourites");
                         bottomNavigationView.setSelectedItemId(R.id.favourites);
                         return true;
 
@@ -201,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
                     case R.id.home:
                         fragment = new Home();
                         loadFragment(fragment);
+                        toolbar.setTitle("Explore");
                         navigationView.setCheckedItem(R.id.home);
                         return true;
 
@@ -208,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
                     case R.id.favourites:
                         fragment = new Favourites();
                         loadFragment(fragment);
+                        toolbar.setTitle("My Favourites");
                         navigationView.setCheckedItem(R.id.favourites);
                         return true;
 
@@ -221,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
                     case R.id.cart:
                         fragment = new Cart();
                         loadFragment(fragment);
+                        toolbar.setTitle("My Cart");
                         navigationView.setCheckedItem(R.id.cart);
                         return true;
 
@@ -229,6 +232,33 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
             }
         });
 
+
+        loadData();
+
+    }
+
+    private void loadData(){
+
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        rootRef.collection("Users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @SuppressLint("DefaultLocale")
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String Username = document.getString("username");
+                        String CityName = document.getString("City");
+
+                        selectedCity.setText(String.format("%s%s%s", getApplicationContext().getString(R.string.SelectedCity)," ", CityName));
+                        username.setText(Username);
+
+
+
+                    }
+                }
+            }
+        });
 
     }
 
@@ -245,6 +275,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
     public void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.home);
+        loadData();
     }
 
 
@@ -279,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
 
     }
+
 
     public void Main(View view){
         startActivity(new Intent(getApplicationContext(),MainActivity.class));

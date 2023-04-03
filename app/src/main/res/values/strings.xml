@@ -6,6 +6,8 @@
     <string name="Attribute_2"><a href="https://www.flaticon.com/free-icons/female" title="female icons">Female icons created by Freepik - Flaticon</a></string>
     <string name="Attribute_3"><a href="https://www.flaticon.com/free-icons/water-bottle" title="water-bottle icons">Water-bottle icons created by Freepik - Flaticon</a></string>
     <string name="Attribute_4"><a href="https://www.flaticon.com/free-icons/gallon" title="gallon icons">Gallon icons created by Freepik - Flaticon</a></string>
+    <string name="Attribute_5"><a href="https://iconscout.com/icons/chennai" target="_blank">Chennai Central Railway Station Icon</a> on <a href="https://iconscout.com">IconScout</a></string>
+    <string name="Attribute_6"><a href="https://iconscout.com/icons/charminar" target="_blank">Charminar Icon</a> on <a href="https://iconscout.com">IconScout</a></string>
 
     <string name="home">Home</string>
     <string name="favourites">Favourites</string>
@@ -17,9 +19,12 @@
     <string name="settings">Settings</string>
     <string name="customer_care">Customer Care</string>
     <string name="logout">Log Out</string>
+    <string name="SelectedCity">Selected City: </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_language">Select Language</string>
 
+
+    <string name="rupee">₹</string>
 
 </resources>

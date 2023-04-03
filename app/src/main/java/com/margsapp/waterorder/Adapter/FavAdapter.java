@@ -69,7 +69,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
         holder.product_title.setText(cart.getTitle());
         holder.product_quantity.setText(cart.getQuantity());
-        holder.product_price.setText(cart.getPrice());
+        holder.product_price.setText(String.format("%s%s",mContext.getText(R.string.rupee),String.valueOf(cart.getPrice())));
         String PID = cart.getPID();
         Glide.with(mContext).load(cart.getImage()).into(holder.product_img);
         holder.delete.setOnClickListener(new View.OnClickListener() {

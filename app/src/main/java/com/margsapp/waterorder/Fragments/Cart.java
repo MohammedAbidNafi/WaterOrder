@@ -67,7 +67,7 @@ public class Cart extends Fragment  {
 
 
 
-    String Username,PhoneNumber;
+    String Username,PhoneNumber,TotalPrice;
 
 
 
@@ -170,7 +170,8 @@ public class Cart extends Fragment  {
 
                     assert price != null;
                     if(snapshot.exists()){
-                        total_price.setText(String.valueOf(price.getTotalPrice()));
+                        total_price.setText(String.format("%s%s", getContext().getText(R.string.rupee), String.valueOf(price.getTotalPrice())));
+                        TotalPrice = String.valueOf(price.getTotalPrice());
                     }else {
                         total_price.setText(0);
                     }
@@ -241,7 +242,7 @@ public class Cart extends Fragment  {
             //options.put("prefill.contact",PhoneNumber);
             options.put("send_sms_hash",true);
             options.put("prefill.name", Username);
-            options.put("amount",total_price.getText().toString()+"00");
+            options.put("amount",TotalPrice+"00");
 
             checkout.open(activity,options);
         }catch (Exception e){

@@ -33,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.margsapp.waterorder.Adapter.CartAdapter;
 import com.margsapp.waterorder.Model.Cart;
 import com.margsapp.waterorder.Model.Order;
+import com.margsapp.waterorder.Model.OrderItem;
 import com.margsapp.waterorder.Model.Price;
 import com.margsapp.waterorder.Model.Users;
 
@@ -81,6 +82,9 @@ public class PaymentSuccessActivity extends AppCompatActivity {
     ArrayList<String> orderList;
 
 
+    OrderItem orderItem;
+
+
 
 
     @Override
@@ -113,7 +117,7 @@ public class PaymentSuccessActivity extends AppCompatActivity {
 
 
 
-
+        orderItem = new OrderItem();
 
 
 
@@ -129,28 +133,7 @@ public class PaymentSuccessActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
         getUserDetails();
-
-
-
-
-
-
-
-
-
-
 
     }
 
@@ -184,7 +167,7 @@ public class PaymentSuccessActivity extends AppCompatActivity {
 
     private void getDateAndTime() {
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yy");
 
         // on below line we are creating a variable
         // for current date and time and calling a simple date format in it.
@@ -209,7 +192,7 @@ public class PaymentSuccessActivity extends AppCompatActivity {
                     Log.d("Value", String.valueOf(price.getTotalPrice()));
 
 
-                    getOrderItems();
+                    updateOrder();
 
                 }
 
@@ -224,6 +207,9 @@ public class PaymentSuccessActivity extends AppCompatActivity {
     }
 
     private void getOrderItems() {
+
+        CollectionReference dataReference = firestore.collection("Users");
+
         Query query = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Cart");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -234,11 +220,19 @@ public class PaymentSuccessActivity extends AppCompatActivity {
                     Cart cart = dataSnapshot.getValue(Cart.class);
 
                     assert cart != null;
-                    orderList.add(cart.getPID());
+
+                    orderItem = new OrderItem(cart.getPrice(),cart.getPID(),cart.getTitle(),cart.getQuantity(),cart.getNo(),cart.getImage());
+                    dataReference.document(firebaseUser.getUid()).collection("Order").document(orderNo).collection("Items").document(cart.getPID()).set(orderItem).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            RemoveCart();
+                        }
+                    });
+
 
                 }
 
-                updateOrder();
+
 
 
 
@@ -260,13 +254,15 @@ public class PaymentSuccessActivity extends AppCompatActivity {
 
 
         // adding our data to our courses object class.
-        Order order = new Order(orderNo, orderValue, "Ordered", orderList,dateTime,username,address,number);
+        Order order = new Order(orderNo, orderValue, "Ordered", orderList,dateTime,username,number,address);
 
         // below method is use to add data to Firebase Firestore.
         dataReference.document(firebaseUser.getUid()).collection("Order").document(orderNo).set(order).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                RemoveCart();
+
+                getOrderItems();
+
 
             }
         }).addOnFailureListener(new OnFailureListener() {

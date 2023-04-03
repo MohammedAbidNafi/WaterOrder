@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">WaterOrder</string>
     <string name="home">ఇల్లు</string>
+    <string name="SelectedCity">Selected City: </string>
 </resources>

@@ -107,7 +107,7 @@ public class ProductPageActivity extends AppCompatActivity {
                         databaseReference.updateChildren(hashMap);
 
 
-                        int FinalPrice = TotalPrice + product_.getPriceInt();
+                        int FinalPrice = TotalPrice + product_.getPrice();
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(FinalPrice);
 
@@ -121,7 +121,7 @@ public class ProductPageActivity extends AppCompatActivity {
                         hashMap.put("No",String.valueOf(newValue));
                         databaseReference.updateChildren(hashMap);
 
-                        int FinalPrice = TotalPrice - product_.getPriceInt();
+                        int FinalPrice = TotalPrice - product_.getPrice();
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(FinalPrice);
 
@@ -201,7 +201,7 @@ public class ProductPageActivity extends AppCompatActivity {
                         Cart cart = snapshot.getValue(Cart.class);
                         assert cart != null;
                         No = cart.getNo();
-                        Product_Price = cart.getPriceInt();
+                        Product_Price = cart.getPrice();
 
                     }
 
@@ -254,10 +254,10 @@ public class ProductPageActivity extends AppCompatActivity {
                     title.setText(product.getTitle());
                     description.setText(product.getDesc());
                     Quantity.setText(product.getQuantity());
-                    price.setText(product.getPrice());
+                    price.setText(String.format("%s%s", getApplicationContext().getText(R.string.rupee), String.valueOf(product.getPrice())));
                     description.setText(product.getDesc());
                     ImageURL = product.getImage();
-                    Product_Price = product.getPriceInt();
+                    Product_Price = product.getPrice();
 
                     Glide.with(getApplication()).load(product.getImage()).into(product_image);
 
@@ -270,7 +270,6 @@ public class ProductPageActivity extends AppCompatActivity {
                 product_.setQuantity(product.getPID());
                 product_.setPrice(product.getPrice());
                 product_.setImage(product.getImage());
-                product_.setPriceInt(product.getPriceInt());
 
 
             }
@@ -412,9 +411,9 @@ public class ProductPageActivity extends AppCompatActivity {
         hashMap.put("Image",ImageURL);
         hashMap.put("Title",title.getText());
         hashMap.put("Quantity",Quantity.getText());
-        hashMap.put("Price",price.getText());
+        hashMap.put("Price",Product_Price);
         hashMap.put("No",quantity.getNumber());
-        hashMap.put("PriceInt",Product_Price);
+
 
 
         assert firebaseUser != null;
@@ -459,7 +458,7 @@ public class ProductPageActivity extends AppCompatActivity {
 
         String No = "";
         // adding our data to our courses object class.
-        Cart cart = new Cart(No,PID,price.getText().toString(),Quantity.getText().toString(),title.getText().toString(),ImageURL,Product_Price);
+        Cart cart = new Cart(No,PID,Product_Price,Quantity.getText().toString(),title.getText().toString(),ImageURL);
 
         // below method is use to add data to Firebase Firestore.
         reference.document(firebaseUser.getUid()).collection("Fav").document(PID).set(cart).addOnSuccessListener(new OnSuccessListener<Void>() {

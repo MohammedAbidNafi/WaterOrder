@@ -61,7 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         String PID = cart.getPID();
         holder.product_title.setText(cart.getTitle());
         holder.product_quantity.setText(cart.getQuantity());
-        holder.product_price.setText(cart.getPrice());
+        holder.product_price.setText(String.format("%s%s",mContext.getText(R.string.rupee),String.valueOf(cart.getPrice())));
         holder.elegantNumberButton.setNumber(cart.getNo());
         holder.elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
@@ -74,7 +74,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     databaseReference.updateChildren(hashMap);
 
 
-                    int FinalPrice = TotalPrice + cart.getPriceInt();
+                    int FinalPrice = TotalPrice + cart.getPrice();
                     DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                     databaseReference1.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(FinalPrice);
 
@@ -88,7 +88,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     hashMap.put("No",String.valueOf(newValue));
                     databaseReference.updateChildren(hashMap);
 
-                    int FinalPrice = TotalPrice - cart.getPriceInt();
+                    int FinalPrice = TotalPrice - cart.getPrice();
                     DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                     databaseReference1.child("Users").child(firebaseUser.getUid()).child("CartValue").child("TotalPrice").setValue(FinalPrice);
 
@@ -116,7 +116,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
 
                                 String No = cart.getNo();
-                                int ProductPrice = cart.getPriceInt();
+                                int ProductPrice = cart.getPrice();
                                 int Price_to_be_removed = Integer.parseInt(No) * ProductPrice;
 
                                 int FinalPrice = TotalPrice - Price_to_be_removed;

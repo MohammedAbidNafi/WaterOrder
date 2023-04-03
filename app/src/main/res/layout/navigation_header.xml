@@ -1,7 +1,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:fitsSystemWindows="true"
     android:background="@color/accent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -12,20 +12,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/lato"
+        android:textSize="25dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:text="Hello" />
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black_text"
+        android:text="Welcome, " />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:text="User name" />
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:fontFamily="@font/lato"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black_text"
+        android:text="" />
 
 </LinearLayout>

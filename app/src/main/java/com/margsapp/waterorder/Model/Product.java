@@ -2,15 +2,16 @@ package com.margsapp.waterorder.Model;
 
 public class Product {
 
-    String PID,Title,Quantity,Price,Image,Desc;
+    String PID,Title,Quantity,Image,Desc;
 
-    int PriceInt;
-
-
+    int Price;
 
 
 
-    public Product(String pid, String title, String quantity, String price, String image,String desc,int priceint) {
+
+
+
+    public Product(String pid, String title, String quantity, int price, String image,String desc) {
 
         PID = pid;
         Title = title;
@@ -18,7 +19,7 @@ public class Product {
         Price = price;
         Image = image;
         Desc = desc;
-        PriceInt = priceint;
+
 
     }
 
@@ -27,13 +28,6 @@ public class Product {
     }
 
 
-    public int getPriceInt() {
-        return PriceInt;
-    }
-
-    public void setPriceInt(int priceInt) {
-        PriceInt = priceInt;
-    }
 
     public String getDesc() {
         return Desc;
@@ -68,11 +62,11 @@ public class Product {
         Quantity = quantity;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         Price = price;
     }
 
